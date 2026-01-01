@@ -53,6 +53,10 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
+        #motivation-quote {
+            transition: opacity 0.2s ease-in-out;
+        }
+
         .glass-card {
             background: rgba(30, 41, 59, 0.6);
             backdrop-filter: blur(8px);
@@ -99,81 +103,112 @@
         }
     </style>
 </head>
-<body class="antialiased pb-12">
+<body class="antialiased pb-12 relative overflow-x-hidden">
+
+    <!-- Samurai Image - Right Side Decoration -->
+    <div class="fixed right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0 hidden lg:block" style="width: 350px; height: 650px; opacity: 0.12;">
+        <img src="samurai.png" 
+             alt="Samurai" 
+             class="w-full h-full object-contain"
+             style="filter: brightness(0.6) contrast(1.2);">
+    </div>
 
     <!-- Header -->
-    <header class="pt-8 pb-6 px-4 text-center">
-        <h1 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400 mb-2">
-            DAILY DISCIPLINE
-        </h1>
-        <p class="text-slate-400 text-sm md:text-base font-medium" id="current-date">Fetching date...</p>
+    <header class="pt-6 pb-4 px-4 flex justify-between items-start max-w-3xl mx-auto">
+        <div>
+            <h1 class="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400">
+                DAILY DISCIPLINE
+            </h1>
+            <p class="text-slate-400 text-xs md:text-sm font-medium" id="current-date">Fetching date...</p>
+        </div>
+        <div class="text-right flex flex-col gap-3">
+             <div class="flex gap-3 justify-end">
+                 <div class="text-center">
+                     <div id="win-streak-badge" class="inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm bg-slate-800 border border-slate-700 text-orange-400">
+                        🔥 0
+                     </div>
+                     <div class="text-[10px] text-slate-500 uppercase tracking-wider mt-1">Streak</div>
+                 </div>
+                 <div class="text-center">
+                     <div id="total-success-badge" class="inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm bg-slate-800 border border-slate-700">
+                        0%
+                     </div>
+                     <div class="text-[10px] text-slate-500 uppercase tracking-wider mt-1">Success</div>
+                 </div>
+             </div>
+        </div>
     </header>
 
-    <main class="max-w-3xl mx-auto px-4 space-y-8">
-        
-        <!-- Monthly Stats -->
-        <section class="grid grid-cols-3 gap-3 md:gap-4 animate-fade-in" style="animation-delay: 0.1s;">
-            <div class="glass-card rounded-xl p-4 text-center flex flex-col items-center justify-center">
-                <span class="text-3xl md:text-4xl mb-1">🥇</span>
-                <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Gold</span>
-                <span id="stat-gold" class="text-xl font-bold text-amber-400">0</span>
+    <!-- Samurai Speech Bubble - Quote Card -->
+    <div id="quote-section" class="fixed right-[50px] top-[140px] pointer-events-none z-10 hidden lg:block animate-fade-in" style="animation-delay: 0.2s; max-width: 300px;">
+        <div class="relative">
+            <!-- Speech bubble - oval shape -->
+            <div class="bg-slate-800/90 backdrop-blur-sm border-2 border-slate-400/40 rounded-full px-6 py-4 shadow-2xl relative">
+                <p id="motivation-quote" class="text-base font-bold text-amber-200 leading-snug text-center" style="font-family: 'Georgia', 'Palatino', serif; font-style: italic; letter-spacing: 0.3px;">
+                    "Fokus na cilj!"
+                </p>
             </div>
-            <div class="glass-card rounded-xl p-4 text-center flex flex-col items-center justify-center">
-                <span class="text-3xl md:text-4xl mb-1">🥈</span>
-                <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Silver</span>
-                <span id="stat-silver" class="text-xl font-bold text-slate-300">0</span>
-            </div>
-            <div class="glass-card rounded-xl p-4 text-center flex flex-col items-center justify-center">
-                <span class="text-3xl md:text-4xl mb-1">🥉</span>
-                <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Bronze</span>
-                <span id="stat-bronze" class="text-xl font-bold text-orange-400">0</span>
-            </div>
-        </section>
+        </div>
+    </div>
 
-        <!-- Quote Card -->
-        <section id="quote-section" class="glass-panel rounded-2xl p-6 text-center border-l-4 border-l-sky-500 animate-fade-in" style="animation-delay: 0.2s;">
-            <p id="motivation-quote" class="text-lg md:text-xl font-semibold italic text-slate-100 mb-2">
-                "Pad nije poraz, poraz je ako sutra ne ustaneš. Resetuj se!"
-            </p>
-            <div id="streak-badge" class="hidden inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 mt-2">
-                🔥 3 DAY STREAK
+    <main class="max-w-3xl mx-auto px-4 space-y-4 relative z-10">
+        
+        <!-- Monthly Stats (Compact) - UPDATED: justify-end -->
+        <section class="flex gap-2 justify-end animate-fade-in" style="animation-delay: 0.1s;">
+            <div class="glass-card rounded-lg p-1 w-[50px] flex flex-col items-center justify-center h-[50px] border border-sky-500/30 shadow-sm">
+                <span class="text-2xl mb-0 leading-none">🥇</span>
+                <span id="stat-gold" class="text-xs font-bold text-amber-400 leading-none mt-1">0</span>
+            </div>
+            <div class="glass-card rounded-lg p-1 w-[50px] flex flex-col items-center justify-center h-[50px] border border-sky-500/30 shadow-sm">
+                <span class="text-2xl mb-0 leading-none">🥈</span>
+                <span id="stat-silver" class="text-xs font-bold text-slate-300 leading-none mt-1">0</span>
+            </div>
+            <div class="glass-card rounded-lg p-1 w-[50px] flex flex-col items-center justify-center h-[50px] border border-sky-500/30 shadow-sm">
+                <span class="text-2xl mb-0 leading-none">🥉</span>
+                <span id="stat-bronze" class="text-xs font-bold text-orange-400 leading-none mt-1">0</span>
             </div>
         </section>
 
         <!-- Today's Progress -->
-        <section class="glass-panel rounded-2xl p-6 animate-fade-in" style="animation-delay: 0.3s;">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+        <section class="glass-panel rounded-xl p-4 border border-sky-500/30 shadow-md animate-fade-in" style="animation-delay: 0.3s;">
+            <div class="flex items-center gap-2 mb-3">
+                <h2 class="text-xs font-bold text-slate-100 flex items-center gap-1 border border-green-400/60 rounded px-2 py-0.5 bg-slate-800">
                     <span>📅</span> Today's Focus
                 </h2>
-                <div id="today-medal" class="text-3xl opacity-50 grayscale transition-all duration-500">🥇</div>
+                <!-- DAILY SUCCESS Indicator -->
+                <span id="daily-success-indicator" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border-2 border-green-400/80 transition-colors duration-300">
+                    0%
+                </span>
+                <div id="today-medal" class="text-xl opacity-50 grayscale transition-all duration-500 ml-auto">🥇</div>
             </div>
 
             <!-- Progress Bar -->
-            <div class="w-full bg-slate-700/50 rounded-full h-4 mb-6 relative overflow-hidden">
-                <div id="progress-bar" class="bg-gradient-to-r from-sky-500 to-purple-500 h-4 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+            <div class="w-full bg-slate-700/50 rounded-full h-2 mb-4 relative overflow-hidden">
+                <div id="progress-bar" class="bg-gradient-to-r from-sky-500 to-purple-500 h-2 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
             </div>
 
-            <!-- Habit List -->
-            <div id="habit-list" class="space-y-3 mb-6">
+            <!-- Habit Grid -->
+            <div id="habit-list" class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
                 <!-- Habits injected here -->
             </div>
 
-            <!-- Add Habit Input -->
-            <div class="flex gap-2 mb-6">
-                <input type="text" id="new-habit-input" placeholder="New habit (e.g. Read 20 mins)" 
-                    class="flex-1 bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors text-sm">
-                <button onclick="app.addHabit()" 
-                    class="bg-sky-600 hover:bg-sky-500 text-white px-5 rounded-lg font-medium transition-colors">
-                    Add
-                </button>
+            <!-- Add Habit Input (Compact) -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
+                 <div class="col-span-2 flex gap-2">
+                    <input type="text" id="new-habit-input" placeholder="New habit..." 
+                        class="flex-1 bg-slate-800/50 border border-slate-600 rounded-lg px-2 py-1.5 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors text-xs">
+                    <button onclick="app.addHabit()" 
+                        class="bg-sky-600 hover:bg-sky-500 text-white w-8 h-8 rounded-lg font-bold transition-colors text-lg flex items-center justify-center">
+                        +
+                    </button>
+                 </div>
             </div>
 
             <!-- Action Buttons -->
-            <div class="pt-4 border-t border-slate-700/50 flex justify-end">
+            <div class="pt-3 border-t border-slate-700/50 flex justify-end">
                 <button onclick="app.archiveDay()" 
-                    class="group relative inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white transition-all duration-200 bg-gradient-to-r from-indigo-600 to-purple-600 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
-                    <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
+                    class="group relative inline-flex items-center justify-center px-3 py-1.5 text-xs font-bold text-white transition-all duration-200 bg-gradient-to-r from-slate-600 to-slate-700 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-600 hover:scale-105 shadow-md">
+                    <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-20 bg-gradient-to-b from-transparent via-transparent to-black"></span>
                     <span class="relative flex items-center gap-2">
                         Finish & Start New Day ➡️
                     </span>
@@ -181,38 +216,40 @@
             </div>
         </section>
 
-        <!-- History -->
+        <!-- History Grid -->
         <section class="animate-fade-in" style="animation-delay: 0.4s;">
-            <h2 class="text-lg font-bold text-slate-300 mb-4 px-2">History & Archive</h2>
-            <div id="history-list" class="space-y-3">
-                <!-- History items injected here -->
-                <div class="text-center text-slate-500 py-4 italic text-sm">No history yet. Start crushing your goals!</div>
+            <h2 class="text-base font-bold text-slate-300 mb-3 px-1">History</h2>
+            <div id="history-grid" class="flex flex-wrap gap-2">
+                <!-- History squares injected here -->
+                <div class="text-center text-slate-500 py-4 italic text-xs w-full">No history yet.</div>
             </div>
         </section>
+        
+        <!-- Reset Section -->
+        <div class="text-center mt-8 pb-8">
+             <button onclick="app.resetApp()" class="text-xs text-slate-600 hover:text-red-500 transition-colors underline">
+                Start Again (Reset All Data)
+             </button>
+        </div>
 
     </main>
 
-    <footer class="mt-12 text-center text-slate-600 text-sm pb-8">
-        <p>Built for Discipline.</p>
-    </footer>
-
     <!-- Application Logic -->
     <script>
-        const STORAGE_KEY = 'daily_discipline_app_v1';
+        const STORAGE_KEY = 'daily_discipline_app_v2';
         
         // --- Confetti Effect ---
         function runCelebration() {
-            const duration = 3000;
+            const duration = 2000;
             const animationEnd = Date.now() + duration;
-            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 0 };
 
-            function random(min, max) { return Math.random() * (max - min) + min; }
             function randomInRange(min, max) { return Math.random() * (max - min) + min; }
 
             const interval = setInterval(function() {
                 const timeLeft = animationEnd - Date.now();
                 if (timeLeft <= 0) { return clearInterval(interval); }
-                const particleCount = 50 * (timeLeft / duration);
+                const particleCount = 40 * (timeLeft / duration);
                 
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
@@ -220,22 +257,39 @@
         }
 
         // --- Quotes ---
-        const QUOTES = {
-            gold: "Gvozdena disciplina! Danas si bio bolji od 99% ljudi.",
-            silver: "Odličan posao, ali sutra nemoj tražiti izgovore za onih par procenata.",
-            bronze: "Dobro je, ali možeš bolje. Disciplina je most između ciljeva i dostignuća.",
-            low: "Pad nije poraz, poraz je ako sutra ne ustaneš. Resetuj se!",
-            streak: "NEZAUSTAVLJIV SI! Kralj discipline."
-        };
+        const MOTIVATION_QUOTES = [
+            'Win the day.', 'Action over excuses.', 'Keep showing up.', 'Discipline is freedom.', 'No shortcuts.', 
+            'Focus on the work.', 'Silence the noise.', 'Stay in the fight.', 'Don\'t break the chain.', 'Build the beast.', 
+            'Average is the enemy.', 'Master your mind.', 'Pain is temporary.', 'One more rep.', 'Eyes on the prize.', 
+            'Execution is everything.', 'Standard of excellence.', 'Commitment, not mood.', 'Grind now, glory later.', 'Finish what you start!'
+        ];
+        
+        // Global shuffle logic
+        let shuffledQuotes = [];
+        let currentIndex = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        
+        function initQuotes() {
+            shuffledQuotes = [...MOTIVATION_QUOTES];
+            shuffleArray(shuffledQuotes);
+            currentIndex = 0;
+        }
 
         // --- App Class ---
         class DisciplineApp {
             constructor() {
                 this.state = {
-                    habits: ['Reading (20m)', 'Workout', 'Deep Work (2h)'], // Default habits
+                    habits: ['Reading (20m)', 'Workout', 'Deep Work (2h)'],
                     currentDay: {}, // Map habitIndex -> boolean
-                    history: [], // Array of objects { date, habits: [], percentage, medal }
-                    lastActiveDate: new Date().toLocaleDateString()
+                    history: [], 
+                    winStreak: 0, // New streak counter
+                    targetDate: null // Target date for tasks
                 };
                 
                 this.init();
@@ -244,29 +298,92 @@
             init() {
                 const saved = localStorage.getItem(STORAGE_KEY);
                 if (saved) {
-                    const parsed = JSON.parse(saved);
-                    // Merge saved state carefully to allow schema updates if needed
-                    this.state = { ...this.state, ...parsed };
-                    
-                    // Reset toggles if it's a naturally new day? 
-                    // Prompt implies manual "Start New Day", so we keep current state until user resets.
-                    // But let's check if the date stored matches today for display purposes
+                    try {
+                        const parsed = JSON.parse(saved);
+                        this.state = { ...this.state, ...parsed };
+                        // Ensure winStreak exists for legacy data
+                        if (typeof this.state.winStreak === 'undefined') {
+                            this.state.winStreak = this.calculateStreakFromHistory();
+                        }
+                        // Initialize targetDate if not present
+                        if (!this.state.targetDate) {
+                            this.state.targetDate = this.getTodayDateString();
+                        }
+                    } catch(e) {
+                        console.error("Data corruption reset");
+                        this.state.targetDate = this.getTodayDateString();
+                    }
                 } else {
-                    // First run
+                    // First time - set target date to today
+                    this.state.targetDate = this.getTodayDateString();
                 }
-
+                
+                initQuotes(); // Initialize shuffled quotes
                 this.render();
                 this.setupEnterKey();
+                // Show initial quote
+                this.updateMotivation();
+            }
+            
+            getTodayDateString() {
+                const today = new Date();
+                return today.toISOString().split('T')[0]; // YYYY-MM-DD format
+            }
+            
+            isTasksLocked() {
+                const today = this.getTodayDateString();
+                const target = this.state.targetDate;
+                return target > today; // Locked if target date is in the future
+            }
+            
+            formatDate(dateString) {
+                const date = new Date(dateString + 'T00:00:00');
+                return date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            }
+
+            calculateStreakFromHistory() {
+                let streak = 0;
+                for (const day of this.state.history) {
+                    if (day.medal === '🥇') {
+                        streak++;
+                    } else {
+                        break;
+                    }
+                }
+                return streak;
             }
 
             save() {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state));
             }
-
+            
             setupEnterKey() {
-                document.getElementById('new-habit-input').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.addHabit();
-                });
+                const input = document.getElementById('new-habit-input');
+                if(input) {
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') this.addHabit();
+                    });
+                }
+            }
+
+            updateMotivation() {
+                const quoteEl = document.getElementById('motivation-quote');
+                
+                // Get next quote
+                if (currentIndex >= shuffledQuotes.length) {
+                    shuffleArray(shuffledQuotes);
+                    currentIndex = 0;
+                }
+                
+                const nextQuote = shuffledQuotes[currentIndex];
+                currentIndex++;
+                
+                // Simple fade effect
+                quoteEl.style.opacity = '0';
+                setTimeout(() => {
+                    quoteEl.textContent = `"${nextQuote}"`;
+                    quoteEl.style.opacity = '1';
+                }, 200);
             }
 
             // --- Core Logic ---
@@ -282,72 +399,40 @@
                 this.render();
             }
 
-            removeHabit(index) {
-                if(confirm('Delete this habit?')) {
-                    const habitName = this.state.habits[index];
-                    this.state.habits.splice(index, 1);
-                    // Also clean up current day state for this index (re-keying required if using index)
-                    // Since we use index for toggle state, removing an item shifts indices.
-                    // We need to rebuild currentDay object.
-                    // Actually, let's migrate `currentDay` to be an array of booleans matching habits array length
-                    // Or reset currentDay for the shift. 
-                    // For simplicity in single file: Let's clean currentDay completely on structural change to avoid bugs,
-                    // or try to preserve by name? Preserving by index is buggy if we splice.
-                    // Let's just reset the specific toggle map for safety or do a smart remap.
-                    // Simplest approach: Delete the key from currentDay, but keys are indices.
-                    // Let's wipe currentDay progress for the deleted item and shift others? 
-                    // To keep it robust: Use habit name as key? No, duplicates allowed? 
-                    // Let's assume unique names or allow simple index shift reset.
-                    // DECISION: When deleting, just re-render. The `currentDay` map uses indices. 
-                    // If I delete index 0, old index 1 becomes 0. The checkmark for old 1 will apply to new 0. 
-                    // This is bad.
-                    // FIX: Re-construct `currentDay` map.
-                    const newCurrentDay = {};
-                    let oldIdx = 0;
-                    let newIdx = 0;
-                    // This is complex without IDs.
-                    // ALTERNATIVE: `currentDay` tracks completion by Habit NAME.
-                    // Let's migrate to using Habit Names as keys for `currentDay`.
-                }
-            }
-
-            // Simpler remove implementation:
             deleteHabit(index) {
-                // To avoid index shifting issues with simple arrays, 
-                // we'll just clear the progress for today when modifying structure
-                // or ideally implement IDs. 
-                // Let's keep it simple: Remove from array, save.
-                // NOTE: This might shift checkmarks if we don't track by ID. 
-                // For this MVP, let's accept that rearranging habits might require re-checking.
-                this.state.habits.splice(index, 1);
-                
-                // Clear out index-based keys from currentDay that are out of bounds or shift them?
-                // Let's just reset currentDay to match the new size to be safe/clean?
-                // Or better: let's migrate `currentDay` to use names.
-                // Refactoring `currentDay` to use names in `toggleHabit`.
-                
-                this.save();
-                this.render();
+                if(confirm("Remove this habit?")) {
+                    this.state.habits.splice(index, 1);
+                    this.state.currentDay = {}; 
+                    this.save();
+                    this.render();
+                }
             }
 
             toggleHabit(index) {
-                // Using index as key for simplicity in MVP
+                // Don't allow toggling if tasks are locked
+                if (this.isTasksLocked()) {
+                    alert('Tasks are locked! Wait until ' + this.formatDate(this.state.targetDate) + ' to continue.');
+                    return;
+                }
+                
                 const key = index.toString();
                 this.state.currentDay[key] = !this.state.currentDay[key];
                 
-                // Check for celebration
                 const stats = this.calculateStats();
-                if (this.state.currentDay[key] && stats.percentage === 100) {
+                const medal = this.getMedal(stats.count, stats.total);
+
+                if (this.state.currentDay[key] && medal === '🥇') {
                     runCelebration();
                 }
 
+                this.updateMotivation();
                 this.save();
                 this.render();
             }
 
             calculateStats() {
                 const total = this.state.habits.length;
-                if (total === 0) return { count: 0, percentage: 0 };
+                if (total === 0) return { count: 0, percentage: 0, total: 0 };
                 
                 let completed = 0;
                 this.state.habits.forEach((_, idx) => {
@@ -361,61 +446,80 @@
                 };
             }
 
-            getMedal(percentage) {
-                if (percentage === 100) return '🥇';
-                if (percentage >= 90) return '🥈';
-                if (percentage >= 80) return '🥉';
-                return null;
+            getMedal(completed, total) {
+                if (total === 0) return null;
+                const missed = total - completed;
+                
+                if (missed === 0) return '🥇'; // Gold (0 missed)
+                if (missed === 1) return '🥈'; // Silver (1 missed)
+                if (missed === 2) return '🥉'; // Bronze (2 missed)
+                return null; // 3+ missed
             }
 
             archiveDay() {
                 const stats = this.calculateStats();
-                const medal = this.getMedal(stats.percentage);
-                const date = new Date().toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+                const medal = this.getMedal(stats.count, stats.total);
+                // Short date for grid: e.g. "Jan 1"
+                const dateShort = new Date(this.state.targetDate + 'T00:00:00').toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
                 
-                // Construct history entry
                 const entry = {
                     id: Date.now(),
-                    date: date,
-                    habitsSnapshot: [...this.state.habits], // Save what habits were present
-                    completedCount: stats.count,
-                    totalCount: stats.total,
+                    date: dateShort,
                     percentage: stats.percentage,
                     medal: medal
                 };
 
-                // Add to history (newest first)
                 this.state.history.unshift(entry);
                 
-                // Reset current day
+                // Update Streak Logic
+                if (medal === '🥇') {
+                    this.state.winStreak++;
+                } else {
+                    this.state.winStreak = 0;
+                }
+
                 this.state.currentDay = {};
+                
+                // Move target date to next day
+                const currentDate = new Date(this.state.targetDate);
+                currentDate.setDate(currentDate.getDate() + 1);
+                this.state.targetDate = currentDate.toISOString().split('T')[0];
                 
                 this.save();
                 this.render();
-                
-                // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            getStreak() {
-                let streak = 0;
-                for (const day of this.state.history) {
-                    if (day.percentage === 100) {
-                        streak++;
-                    } else {
-                        break;
-                    }
+            resetApp() {
+                if(confirm("Are you sure? This will delete ALL history and habits.")) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    location.reload();
                 }
-                return streak;
+            }
+
+            calculateTotalSuccessRate() {
+                // Calculate average percentage of all history + today's snapshot isn't included in total usually, just history.
+                // The user asked "average of all completed days correctly" -> implies history.
+                if (this.state.history.length === 0) {
+                     return 0; // Default if no history
+                }
+                
+                const totalPct = this.state.history.reduce((acc, curr) => acc + curr.percentage, 0);
+                const avg = Math.round(totalPct / this.state.history.length);
+                return avg;
             }
 
             // --- Rendering ---
 
             render() {
-                // 1. Date
-                document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                const isLocked = this.isTasksLocked();
+                
+                // 1. Date - show target date with lock indicator if locked
+                const dateEl = document.getElementById('current-date');
+                const formattedDate = this.formatDate(this.state.targetDate);
+                dateEl.textContent = formattedDate + (isLocked ? ' 🔒 (Locked until this date)' : '');
 
-                // 2. Habits List
+                // 2. Habits Grid
                 const list = document.getElementById('habit-list');
                 list.innerHTML = '';
                 
@@ -423,42 +527,54 @@
                     const isChecked = !!this.state.currentDay[index];
                     
                     const div = document.createElement('div');
-                    div.className = `glass-card rounded-xl p-4 flex items-center justify-between group transition-all duration-300 ${isChecked ? 'bg-slate-800/80 border-sky-500/30' : ''}`;
+                    // Grid Item Style - Border changes color (red/green), text stays gradient, 3D effect
+                    
+                    div.className = `glass-card rounded-lg px-3 py-2 flex items-center justify-between group transition-all duration-300 h-10 overflow-hidden shadow-md hover:shadow-lg bg-slate-700/30 ${isChecked ? 'bg-slate-800/80' : ''} ${isLocked ? 'opacity-50 cursor-not-allowed' : ''}`;
+                    div.style.border = isChecked ? '0.5px solid rgb(34, 197, 94)' : '0.5px solid #ef7482';
+                    // 3D effect
+                    div.style.boxShadow = isChecked 
+                        ? '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.2)'
+                        : '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.2)';
+                    div.style.transform = 'perspective(1000px) rotateX(1deg)';
+                    
+                    const clickHandler = isLocked ? '' : `onclick="app.toggleHabit(${index})"`;
+                    const cursorClass = isLocked ? '' : 'cursor-pointer';
                     
                     div.innerHTML = `
-                        <div class="flex items-center gap-4 flex-1 cursor-pointer" onclick="app.toggleHabit(${index})">
-                            <div class="checkbox-wrapper relative w-6 h-6">
-                                <input type="checkbox" ${isChecked ? 'checked' : ''} class="peer appearance-none w-6 h-6 border-2 border-slate-500 rounded-md checked:bg-sky-500 checked:border-sky-500 transition-colors cursor-pointer absolute inset-0 opacity-0 z-10">
-                                <div class="w-6 h-6 border-2 border-slate-500 rounded-md peer-checked:bg-sky-500 peer-checked:border-sky-500 transition-colors flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-white hidden pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="flex items-center gap-2 overflow-hidden w-full ${cursorClass}" ${clickHandler}>
+                             <div class="checkbox-wrapper relative w-3.5 h-3.5 flex-shrink-0 ${cursorClass}">
+                                <input type="checkbox" ${isChecked ? 'checked' : ''} ${isLocked ? 'disabled' : ''} class="peer appearance-none w-3.5 h-3.5 border border-slate-500 rounded checked:bg-green-500 checked:border-green-500 transition-colors ${cursorClass} absolute inset-0 opacity-0 z-10">
+                                <div class="w-3.5 h-3.5 border border-slate-500 rounded peer-checked:bg-green-500 peer-checked:border-green-500 transition-colors flex items-center justify-center">
+                                    <svg class="w-2.5 h-2.5 text-white hidden pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </div>
                             </div>
-                            <span class="text-lg ${isChecked ? 'text-slate-400 line-through decoration-slate-600' : 'text-slate-200'} transition-all">${habit}</span>
+                            <span class="text-sm font-bold uppercase bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400 truncate select-none">${habit}</span>
                         </div>
-                        <button onclick="event.stopPropagation(); app.deleteHabit(${index})" class="text-slate-600 hover:text-red-400 p-2 opacity-0 group-hover:opacity-100 transition-opacity" title="Remove habit">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        <button onclick="event.stopPropagation(); app.deleteHabit(${index})" class="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity ml-1 flex-shrink-0">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                     `;
                     list.appendChild(div);
                 });
 
-                // 3. Progress & Stats
+                // 3. Stats & Progress
                 const stats = this.calculateStats();
                 const progressBar = document.getElementById('progress-bar');
                 progressBar.style.width = `${stats.percentage}%`;
                 
                 // Color change based on progress
                 if (stats.percentage === 100) {
-                    progressBar.className = 'bg-gradient-to-r from-amber-400 to-yellow-600 h-full rounded-full transition-all duration-500';
+                    progressBar.className = 'bg-gradient-to-r from-amber-400 to-yellow-600 h-2 rounded-full transition-all duration-500';
                 } else if (stats.percentage >= 80) {
-                     progressBar.className = 'bg-gradient-to-r from-sky-400 to-blue-600 h-full rounded-full transition-all duration-500';
+                     progressBar.className = 'bg-gradient-to-r from-sky-400 to-blue-600 h-2 rounded-full transition-all duration-500';
                 } else {
-                     progressBar.className = 'bg-gradient-to-r from-slate-500 to-slate-400 h-full rounded-full transition-all duration-500';
+                     progressBar.className = 'bg-gradient-to-r from-slate-500 to-slate-400 h-2 rounded-full transition-all duration-500';
                 }
 
-                // Current Day Medal
+                // Medal Logic (Strict: 0 missed = Gold, 1 missed = Silver, 2 missed = Bronze)
                 const todayMedalEl = document.getElementById('today-medal');
-                const earnedMedal = this.getMedal(stats.percentage);
+                const earnedMedal = this.getMedal(stats.count, stats.total);
+                
                 if (earnedMedal) {
                     todayMedalEl.textContent = earnedMedal;
                     todayMedalEl.classList.remove('opacity-50', 'grayscale');
@@ -469,83 +585,86 @@
                     todayMedalEl.classList.remove('scale-110');
                 }
 
-                // 4. Motivation & Quote
-                const quoteEl = document.getElementById('motivation-quote');
-                const streakBadge = document.getElementById('streak-badge');
-                
-                // Check Streak (from history + today possibility)
-                // Actually streak is strictly based on history, or history + today if today is 100%?
-                // Let's count history.
-                const historyStreak = this.getStreak();
-                const isTodayGold = stats.percentage === 100;
-                const totalStreak = isTodayGold ? historyStreak + 1 : historyStreak;
-
-                if (totalStreak >= 3) {
-                    quoteEl.textContent = `"${QUOTES.streak}"`;
-                    quoteEl.className = "text-lg md:text-xl font-bold italic text-amber-300 mb-2";
-                    streakBadge.classList.remove('hidden');
-                    streakBadge.textContent = `🔥 ${totalStreak} DAY STREAK`;
+                // DAILY SUCCESS Indicator Update
+                const dailyInd = document.getElementById('daily-success-indicator');
+                dailyInd.textContent = `${stats.percentage}%`;
+                // Color logic for indicator
+                dailyInd.className = 'text-xs font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ml-2 ';
+                if (stats.percentage === 100) {
+                    dailyInd.className += 'bg-green-500/20 text-green-400 border-green-500/50';
+                } else if (stats.percentage >= 80) {
+                    dailyInd.className += 'bg-amber-500/20 text-amber-400 border-amber-500/50';
+                } else if (stats.percentage >= 50) {
+                    dailyInd.className += 'bg-blue-500/20 text-blue-400 border-blue-500/50';
                 } else {
-                    streakBadge.classList.add('hidden');
-                    quoteEl.className = "text-lg md:text-xl font-semibold italic text-slate-100 mb-2";
-                    
-                    if (stats.percentage === 100) quoteEl.textContent = `"${QUOTES.gold}"`;
-                    else if (stats.percentage >= 90) quoteEl.textContent = `"${QUOTES.silver}"`;
-                    else if (stats.percentage >= 80) quoteEl.textContent = `"${QUOTES.bronze}"`;
-                    else quoteEl.textContent = `"${QUOTES.low}"`;
+                    dailyInd.className += 'bg-slate-800 text-slate-400 border-slate-700';
                 }
 
-                // 5. Monthly Stats (Aggregated from History)
+                // 4. Monthly Stats Count
                 let golds = 0, silvers = 0, bronzes = 0;
-                // Filter for current month logic could be added here, 
-                // for now we just sum all history as "Total Stats" or simple monthly logic
-                const currentMonth = new Date().getMonth();
-                
                 this.state.history.forEach(day => {
-                    // primitive month check
-                    // const dayDate = new Date(day.date); // This might fail with "short" format depending on locale
-                    // Let's just count all for this simple version or try to parse
-                    // For MVP simplicity: All Time Stats (renaming UI slightly in mind if needed, but Prompt asked "Monthly")
-                    // Let's assume history is usually small or clearable. 
                     if (day.medal === '🥇') golds++;
                     if (day.medal === '🥈') silvers++;
                     if (day.medal === '🥉') bronzes++;
                 });
-                
                 document.getElementById('stat-gold').textContent = golds;
                 document.getElementById('stat-silver').textContent = silvers;
                 document.getElementById('stat-bronze').textContent = bronzes;
 
-                // 6. Render History List
-                const historyEl = document.getElementById('history-list');
+                // 5. Total Success Rate
+                const totalRate = this.calculateTotalSuccessRate();
+                const rateBadge = document.getElementById('total-success-badge');
+                rateBadge.textContent = `${totalRate}%`;
+                
+                // Win Streak Update
+                const streakBadge = document.getElementById('win-streak-badge');
+                streakBadge.textContent = `🔥 ${this.state.winStreak}`;
+                if (this.state.winStreak > 0) {
+                    streakBadge.className = 'inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm bg-orange-500/10 text-orange-400 border border-orange-500/50';
+                } else {
+                    streakBadge.className = 'inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm bg-slate-800 text-slate-500 border border-slate-700';
+                }
+                
+                // Color Code
+                rateBadge.className = 'inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm border shadow-sm transition-colors duration-300';
+                if (totalRate === 100) {
+                    rateBadge.classList.add('bg-lime-500/10', 'text-lime-400', 'border-lime-500/50');
+                } else if (totalRate >= 90) {
+                    rateBadge.classList.add('bg-cyan-500/10', 'text-cyan-400', 'border-cyan-500/50');
+                } else if (totalRate >= 80) {
+                    rateBadge.classList.add('bg-orange-500/10', 'text-orange-400', 'border-orange-500/50');
+                } else if (totalRate < 70 && this.state.history.length > 0) {
+                     rateBadge.classList.add('bg-red-500/10', 'text-red-400', 'border-red-500/50');
+                } else {
+                    // Default / New
+                    rateBadge.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
+                }
+
+                // 6. History Grid
+                const historyEl = document.getElementById('history-grid');
                 historyEl.innerHTML = '';
                 
                 if (this.state.history.length === 0) {
-                    historyEl.innerHTML = '<div class="text-center text-slate-500 py-4 italic text-sm">No history yet. Start crushing your goals!</div>';
+                    historyEl.innerHTML = '<div class="text-center text-slate-500 py-4 italic text-xs w-full">No history yet.</div>';
                 } else {
                     this.state.history.forEach(day => {
-                        const row = document.createElement('div');
-                        row.className = 'glass-card rounded-lg p-4 flex items-center gap-4 animate-fade-in';
+                        const cell = document.createElement('div');
                         
-                        let barColor = 'bg-slate-600';
-                        if (day.percentage === 100) barColor = 'bg-amber-400';
-                        else if (day.percentage >= 80) barColor = 'bg-sky-400';
+                        // Determine Color
+                        let bgClass = 'bg-slate-800 border-slate-700 text-slate-400';
+                        if (day.medal === '🥇') bgClass = 'bg-amber-500/20 border-amber-500/50 text-amber-300';
+                        else if (day.medal === '🥈') bgClass = 'bg-slate-400/20 border-slate-400/50 text-slate-300';
+                        else if (day.medal === '🥉') bgClass = 'bg-orange-500/20 border-orange-500/50 text-orange-300';
+                        
+                        cell.className = `w-9 h-9 rounded-md border ${bgClass} flex flex-col items-center justify-center cursor-help transition-transform hover:scale-105 relative group shadow-sm`;
+                        cell.title = `${day.date}: ${day.percentage}%`;
 
-                        row.innerHTML = `
-                            <div class="w-16 flex-shrink-0 flex flex-col items-center">
-                                <span class="text-2xl">${day.medal || '📝'}</span>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex justify-between items-end mb-1">
-                                    <span class="font-medium text-slate-200 text-sm">${day.date}</span>
-                                    <span class="text-xs font-mono text-slate-400">${day.percentage}%</span>
-                                </div>
-                                <div class="w-full bg-slate-700/50 rounded-full h-2">
-                                    <div class="${barColor} h-2 rounded-full" style="width: ${day.percentage}%"></div>
-                                </div>
-                            </div>
+                        cell.innerHTML = `
+                            <span class="text-[10px] absolute -top-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-black text-white px-1 rounded z-10">${day.date}</span>
+                            <span class="text-sm leading-none">${day.medal || '-'}</span>
+                            <span class="text-[8px] font-mono leading-none mt-0.5">${day.percentage}%</span>
                         `;
-                        historyEl.appendChild(row);
+                        historyEl.appendChild(cell);
                     });
                 }
             }
