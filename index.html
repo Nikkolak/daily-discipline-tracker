@@ -147,9 +147,75 @@
 
     <!-- Header -->
     <header class="pt-6 pb-4 px-4 max-w-3xl mx-auto">
+        <!-- Mobile Header (visible only on mobile) -->
+        <div class="lg:hidden mb-4 space-y-2">
+            <!-- Kaizen Title -->
+            <div onclick="app.openDailyQuote()" style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 15px 20px; cursor: pointer;">
+                <h1 class="text-3xl font-bold text-center" style="font-family: 'Permanent Marker', cursive; color: #a6a6a6;">Kaizen</h1>
+                <p class="text-xs font-bold text-center" style="color: #FFD700;">discipline through daily progress</p>
+            </div>
+            
+            <!-- User Name -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 10px 20px;">
+                <p class="text-center">
+                    <span id="user-name-display-mobile" class="text-base font-medium" style="color: #CD7F32;">User</span>
+                    <span class="text-base font-medium" style="color: #94a3b8;"> - </span>
+                    <span id="user-rank-display-mobile" class="text-base font-bold" style="color: #ffffff;">Apprentice</span>
+                </p>
+            </div>
+            
+            <!-- Date -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 20px;">
+                <p class="text-slate-400 text-xs text-center" id="current-date-mobile">Fetching date...</p>
+            </div>
+            
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-2">
+                <!-- Medals -->
+                <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 15px;">
+                    <p class="text-xs text-slate-400 text-center mb-1">Medals</p>
+                    <div class="flex justify-center gap-2">
+                        <div class="flex flex-col items-center">
+                            <svg class="shuriken gold" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
+                                <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
+                            </svg>
+                            <span id="stat-gold-mobile" class="text-xs font-bold text-amber-400">0</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <svg class="shuriken silver" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
+                                <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
+                            </svg>
+                            <span id="stat-silver-mobile" class="text-xs font-bold text-slate-300">0</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <svg class="shuriken bronze" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
+                                <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
+                            </svg>
+                            <span id="stat-bronze-mobile" class="text-xs font-bold text-orange-400">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Winning Streak -->
+                <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 15px;">
+                    <p class="text-xs text-slate-400 text-center mb-1">Streak</p>
+                    <div id="win-streak-badge-mobile" class="text-center font-bold text-sm" style="color: #FFD700;">🔥 0</div>
+                </div>
+            </div>
+            
+            <!-- Total Success -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 20px;">
+                <p class="text-xs text-slate-400 text-center mb-1">Total Success</p>
+                <div id="total-success-badge-mobile" class="text-center font-bold text-sm" style="color: #FFD700;">0%</div>
+            </div>
+        </div>
+
         <div class="flex justify-between items-start">
-            <!-- Left: Kaizen - Top Left Corner -->
-            <div style="position: absolute; left: 20px; top: 20px; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 20px 25px; width: 280px; box-sizing: border-box;">
+            <!-- Left: Kaizen - Top Left Corner (Desktop only) -->
+            <div class="hidden lg:block" onclick="app.openDailyQuote()" style="position: absolute; left: 20px; top: 20px; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 20px 25px; width: 280px; box-sizing: border-box; cursor: pointer; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
                 <h1 class="text-4xl md:text-5xl font-bold" style="font-family: 'Permanent Marker', cursive; letter-spacing: 0.05em; font-weight: 500; color: #a6a6a6; text-align: center;">
                     Kaizen
                 </h1>
@@ -160,8 +226,8 @@
         </div>
     </header>
 
-    <!-- User Name and Rank - Below Kaizen -->
-    <div style="position: absolute; left: 20px; top: 131px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 12px 25px; width: 280px; box-sizing: border-box;">
+    <!-- User Name and Rank - Below Kaizen (Desktop only) -->
+    <div class="hidden lg:block" style="position: absolute; left: 20px; top: 131px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 12px 25px; width: 280px; box-sizing: border-box;">
         <p style="font-family: 'Inter', sans-serif; text-align: center;">
             <span id="user-name-display" class="text-lg md:text-xl font-medium" style="color: #CD7F32;">Nikola</span>
             <span class="text-base md:text-lg font-medium" style="color: #94a3b8;"> - </span>
@@ -169,13 +235,13 @@
         </p>
     </div>
 
-    <!-- Date - Below Username Placeholder -->
-    <div style="position: absolute; left: 20px; top: 194px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 25px; width: 280px; box-sizing: border-box;">
+    <!-- Date - Below Username Placeholder (Desktop only) -->
+    <div class="hidden lg:block" style="position: absolute; left: 20px; top: 194px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 25px; width: 280px; box-sizing: border-box;">
         <p class="text-slate-400 text-xs md:text-sm font-medium" id="current-date" style="text-align: center;">Fetching date...</p>
     </div>
 
-    <!-- Medals Earned - Below Date Placeholder -->
-    <div style="position: absolute; left: 20px; top: 237px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 20px; width: 280px; box-sizing: border-box;">
+    <!-- Medals Earned - Below Date Placeholder (Desktop only) -->
+    <div class="hidden lg:block" style="position: absolute; left: 20px; top: 237px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 20px; width: 280px; box-sizing: border-box;">
         <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
             <p class="text-base md:text-lg font-medium text-slate-400" style="margin: 0;">Medals earned</p>
             <div style="display: flex; gap: 6px; margin-left: 8px;">
@@ -210,16 +276,16 @@
         </div>
     </div>
 
-    <!-- Winning Streak - Below Medals Earned, Left Side -->
-    <div style="position: absolute; left: 20px; top: 302px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 12px; width: 135px; height: 48px; box-sizing: border-box;">
+    <!-- Winning Streak - Below Medals Earned, Left Side (Desktop only) -->
+    <div class="hidden lg:block" style="position: absolute; left: 20px; top: 302px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 12px; width: 135px; height: 48px; box-sizing: border-box;">
         <div style="display: flex; align-items: center; justify-content: center; gap: 6px; height: 100%;">
             <p class="text-slate-400 text-xs font-bold" style="margin: 0;">Winning streak</p>
             <div id="win-streak-badge" class="inline-flex items-center justify-center rounded-lg font-bold text-xs border shadow-sm transition-colors duration-300 bg-slate-800 text-slate-300 border-slate-700" style="min-width: 45px; height: 24px; padding: 0 6px;">🔥 0</div>
         </div>
     </div>
 
-    <!-- Total Success - Below Medals Earned, Right Side -->
-    <div style="position: absolute; left: 165px; top: 302px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 12px; width: 135px; height: 48px; box-sizing: border-box;">
+    <!-- Total Success - Below Medals Earned, Right Side (Desktop only) -->
+    <div class="hidden lg:block" style="position: absolute; left: 165px; top: 302px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 12px; width: 135px; height: 48px; box-sizing: border-box;">
         <div style="display: flex; align-items: center; justify-content: center; gap: 6px; height: 100%;">
             <p class="text-slate-400 text-xs font-bold" style="margin: 0;">Total success</p>
             <div id="total-success-badge" class="inline-flex items-center justify-center rounded-lg font-bold text-xs border shadow-sm transition-colors duration-300 bg-slate-800 text-slate-300 border-slate-700" style="min-width: 45px; height: 24px; padding: 0 6px;">0%</div>
@@ -229,7 +295,7 @@
 
     <!-- Samurai Speech Bubble - Quote Card -->
     <div id="quote-section" class="pointer-events-none z-10 hidden lg:block animate-fade-in" style="animation-delay: 0.2s; position: absolute; right: 20px; top: 20px; background-image: url('assets/images/motivation.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 20px 25px; width: 280px; height: 225px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-        <div style="background-color: rgba(0, 0, 0, 0.15); padding: 10px 20px; border-radius: 8px; backdrop-filter: blur(4px);">
+        <div style="background-color: rgba(0, 0, 0, 0.08); padding: 10px 20px; border-radius: 8px; backdrop-filter: blur(4px);">
             <p id="motivation-quote" class="text-2xl font-bold leading-snug text-center" style="font-family: 'Georgia', 'Palatino', serif; font-style: italic; letter-spacing: 0.3px; color: #ffffff;">
                 "Fokus na cilj!"
             </p>
@@ -351,6 +417,26 @@
                 ⚙️ Start Again
             </span>
         </button>
+    </div>
+
+    <!-- Daily Quote Modal -->
+    <div id="daily-quote-modal" class="fixed inset-0 z-50 hidden">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+        <!-- Background Image -->
+        <img src="assets/images/daily.png" alt="Daily Background" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        
+        <!-- Back Button -->
+        <button onclick="app.closeDailyQuote()" 
+            style="position: fixed; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 215, 0, 0.3); color: #FFD700; padding: 8px 16px; border-radius: 8px; font-size: 14px; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(5px);"
+            onmouseover="this.style.background='rgba(0, 0, 0, 0.7)'"
+            onmouseout="this.style.background='rgba(0, 0, 0, 0.5)'">
+            ← Back
+        </button>
+        
+        <!-- Quote Container -->
+        <div style="position: fixed; right: 5%; top: 60%; transform: translateY(-50%); width: 45%; padding: 40px;">
+            <div id="daily-quote-text" style="font-family: 'Playfair Display', serif; font-size: 1.8rem; line-height: 1.6; color: #000000; font-style: italic; text-align: center; opacity: 0;"></div>
+        </div>
     </div>
 
     <!-- Reset Modal -->

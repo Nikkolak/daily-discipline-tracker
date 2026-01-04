@@ -187,6 +187,48 @@ body::before {
     fill: #000000;
 }
 
+/* Mobile Responsive Design */
+@media (max-width: 1024px) {
+    /* Hide absolute positioned side panels on mobile */
+    header .flex > div[onclick*="openDailyQuote"],
+    div[style*="top: 131px"],
+    div[style*="top: 194px"],
+    div[style*="top: 237px"],
+    div[style*="top: 302px"],
+    #quote-section {
+        display: none !important;
+    }
+    
+    /* Add mobile header with stats */
+    body::after {
+        content: '';
+        display: block;
+        height: 0;
+    }
+    
+    /* Adjust main content for mobile */
+    main {
+        padding-top: 20px !important;
+        margin-top: 0 !important;
+    }
+    
+    /* Make tables scrollable on mobile */
+    .task-container-base {
+        max-height: none !important;
+        overflow-x: auto;
+    }
+    
+    /* Adjust history section for mobile */
+    .history-section {
+        padding: 15px 20px !important;
+    }
+    
+    /* Make Start Again button smaller on mobile */
+    #start-again-button {
+        transform: scale(0.9);
+    }
+}
+
 /* Heated Metal Progress Bar Animation */
 .heated-metal-bar {
     background: linear-gradient(90deg, 

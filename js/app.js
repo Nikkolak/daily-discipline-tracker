@@ -1,5 +1,30 @@
 const STORAGE_KEY = 'daily_discipline_app_v2';
 
+// --- Daily Kaizen Quotes ---
+const DAILY_KAIZEN_QUOTES = [
+    "Standardize, then improve. – You cannot improve a process that is inconsistent. Establish a baseline first.",
+    "Small steps lead to giant leaps. – Focus on 1% improvement every day instead of seeking a 100% jump at once.",
+    "Ask 'Why' five times. – To solve a problem, dig deep until you find the root cause, not just the symptom.",
+    "Discard fixed ideas. – Be willing to let go of 'the way we've always done it' to find a better path.",
+    "Done is better than perfect. – Perfectionism is a barrier to Kaizen. Start now, refine as you go.",
+    "Seek solutions, not excuses. – Spend your energy on the 'how,' not on why something is impossible.",
+    "The best process is no process. – Eliminate unnecessary steps that don't add value to your life or goals.",
+    "Wisdom over capital. – Use your brain and creativity to solve problems before you spend money on them.",
+    "Improvement has no finish line. – Success is a moving target. The moment you stop improving, you start declining.",
+    "Focus on the 'Gemba'. – Go to the place where the real work happens. Real change starts with real action.",
+    "Micro-habits, Macro-results. – A habit so small it's impossible to fail is the strongest foundation for success.",
+    "Correct mistakes immediately. – Don't wait for tomorrow to fix a bad habit you noticed today.",
+    "Clean your workspace, clear your mind. – Physical order reflects and creates mental discipline.",
+    "Measure what matters. – If you don't track it, you can't improve it. Data is the enemy of delusion.",
+    "Good enough is never enough. – Contentment is the end of progress. Stay hungry for the next 1%.",
+    "Question the status quo. – Just because it worked yesterday doesn't mean it's the best way for today.",
+    "Eliminate 'Muda' (Waste). – Identify and remove time-wasters that drain your energy without giving back.",
+    "Discipline is a muscle. – It grows stronger only through constant, daily resistance.",
+    "Embrace the struggle. – Friction is where the growth happens. If it's easy, it's not Kaizen.",
+    "Your only competition is yesterday. – Don't look at others; look at the person you were 24 hours ago."
+];
+
+
 // --- Confetti Effect ---
 function runCelebration() {
     const duration = 2000;
@@ -216,13 +241,25 @@ class DisciplineApp {
     updateUserDisplay() {
         const nameEl = document.getElementById('user-name-display');
         const rankEl = document.getElementById('user-rank-display');
+        const nameElMobile = document.getElementById('user-name-display-mobile');
+        const rankElMobile = document.getElementById('user-rank-display-mobile');
         
-        if (nameEl && rankEl && this.state.userName) {
-            nameEl.textContent = this.state.userName;
-            
+        if (this.state.userName) {
             const rankInfo = this.getRankInfo();
-            rankEl.textContent = rankInfo.rank;
-            rankEl.style.color = rankInfo.color;
+            
+            // Update desktop
+            if (nameEl) nameEl.textContent = this.state.userName;
+            if (rankEl) {
+                rankEl.textContent = rankInfo.rank;
+                rankEl.style.color = rankInfo.color;
+            }
+            
+            // Update mobile
+            if (nameElMobile) nameElMobile.textContent = this.state.userName;
+            if (rankElMobile) {
+                rankElMobile.textContent = rankInfo.rank;
+                rankElMobile.style.color = rankInfo.color;
+            }
         }
     }
     
@@ -526,6 +563,88 @@ class DisciplineApp {
         }
     }
 
+    playZenSound() {
+        // Stop previous audio if it exists
+        if (this.zenAudio) {
+            this.zenAudio.pause();
+            this.zenAudio.currentTime = 0;
+        }
+        
+        // Play the sound.mp3 file
+        this.zenAudio = new Audio('assets/sound.mp3');
+        this.zenAudio.volume = 0.5; // Set volume to 50%
+        this.zenAudio.play().catch(error => {
+            console.log('Audio playback failed:', error);
+        });
+    }
+
+    openDailyQuote() {
+        // Play zen sound
+        this.playZenSound();
+        
+        // Calculate day index based on history length (each finished day = next quote)
+        const dayIndex = this.state.history.length % DAILY_KAIZEN_QUOTES.length;
+        const quote = DAILY_KAIZEN_QUOTES[dayIndex];
+        
+        // Show modal
+        const modal = document.getElementById('daily-quote-modal');
+        const quoteEl = document.getElementById('daily-quote-text');
+        
+        if (modal && quoteEl) {
+            modal.classList.remove('hidden');
+            
+            // Split quote by "–" to bold the first part
+            const parts = quote.split('–');
+            let index = 0;
+            let currentText = '';
+            
+            function typeWriter() {
+                if (index < quote.length) {
+                    currentText = quote.substring(0, index + 1);
+                    
+                    // Apply bold formatting in real-time
+                    if (parts.length > 1) {
+                        const firstPartLength = parts[0].length;
+                        if (index <= firstPartLength) {
+                            quoteEl.innerHTML = '<span style="font-weight: 700;">' + currentText + '</span>';
+                        } else {
+                            quoteEl.innerHTML = '<span style="font-weight: 700;">' + parts[0] + '</span>' + currentText.substring(firstPartLength);
+                        }
+                    } else {
+                        quoteEl.textContent = currentText;
+                    }
+                    
+                    quoteEl.style.opacity = '1';
+                    index++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            
+            // Start typing after a short delay
+            setTimeout(typeWriter, 500);
+        }
+    }
+
+    closeDailyQuote() {
+        const modal = document.getElementById('daily-quote-modal');
+        const quoteEl = document.getElementById('daily-quote-text');
+        
+        if (modal) {
+            modal.classList.add('hidden');
+        }
+        
+        if (quoteEl) {
+            quoteEl.innerHTML = '';
+            quoteEl.style.opacity = '0';
+        }
+        
+        // Stop the zen audio
+        if (this.zenAudio) {
+            this.zenAudio.pause();
+            this.zenAudio.currentTime = 0;
+        }
+    }
+
     resetApp() {
         this.customConfirm("Are you sure? This will delete ALL history and habits.", (confirmed) => {
             if (confirmed) {
@@ -626,9 +745,11 @@ class DisciplineApp {
         
         // 1. Date - always show today's date
         const dateEl = document.getElementById('current-date');
+        const dateElMobile = document.getElementById('current-date-mobile');
         const today = this.getTodayDateString();
         const formattedDate = this.formatDate(today);
-        dateEl.textContent = formattedDate;
+        if (dateEl) dateEl.textContent = formattedDate;
+        if (dateElMobile) dateElMobile.textContent = formattedDate;
 
         // 2. Habits Grid
         const list = document.getElementById('habit-list');
@@ -729,15 +850,29 @@ class DisciplineApp {
         document.getElementById('stat-gold').textContent = golds;
         document.getElementById('stat-silver').textContent = silvers;
         document.getElementById('stat-bronze').textContent = bronzes;
+        
+        // Update mobile stats
+        const goldMobile = document.getElementById('stat-gold-mobile');
+        const silverMobile = document.getElementById('stat-silver-mobile');
+        const bronzeMobile = document.getElementById('stat-bronze-mobile');
+        if (goldMobile) goldMobile.textContent = golds;
+        if (silverMobile) silverMobile.textContent = silvers;
+        if (bronzeMobile) bronzeMobile.textContent = bronzes;
 
         // 5. Total Success Rate
         const totalRate = this.calculateTotalSuccessRate();
         const rateBadge = document.getElementById('total-success-badge');
         rateBadge.textContent = `${totalRate}%`;
+        const rateBadgeMobile = document.getElementById('total-success-badge-mobile');
+        if (rateBadgeMobile) rateBadgeMobile.textContent = `${totalRate}%`;
         
         // Win Streak Update
         const streakBadge = document.getElementById('win-streak-badge');
-        streakBadge.textContent = `🔥 ${this.state.winStreak}`;
+        const streakBadgeMobile = document.getElementById('win-streak-badge-mobile');
+        const streakText = `🔥 ${this.state.winStreak}`;
+        streakBadge.textContent = streakText;
+        if (streakBadgeMobile) streakBadgeMobile.textContent = streakText;
+        
         if (this.state.winStreak > 0) {
             streakBadge.className = 'inline-flex items-center justify-center rounded-lg font-bold text-xs border shadow-sm transition-colors duration-300 bg-orange-500/10 text-orange-400 border-orange-500/50';
             streakBadge.style.minWidth = '50px';
