@@ -1,0 +1,235 @@
+/* Body and Background */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1a1a1a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    background-image: url('../assets/images/metal.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Glassmorphism */
+.glass-panel {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#motivation-quote {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.glass-card {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.glass-card:hover {
+    background: rgba(51, 65, 85, 0.7);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155; 
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569; 
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.checkbox-wrapper input:checked + div {
+    background-color: #10b981;
+    border-color: #10b981;
+}
+
+.checkbox-wrapper input:checked + div svg {
+    display: block;
+}
+
+.checkbox-wrapper div {
+    border: 2px solid rgba(239, 116, 130, 0.6) !important;
+}
+
+.checkbox-wrapper input:checked + div {
+    border: 2px solid #10b981 !important;
+}
+
+/* 3D Tactile Button Styles */
+.task-button {
+    background-image: url('../assets/images/card1.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 2px solid rgba(239, 116, 130, 0.6);
+    box-shadow: 
+        -2px -2px 6px rgba(255, 255, 255, 0.1),
+        4px 4px 10px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 rgba(0, 0, 0, 0);
+    transition: all 0.2s ease-in-out;
+    transform: translateY(0px);
+}
+
+.task-button.pressed {
+    background-image: url('../assets/images/card.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    box-shadow: 
+        inset 2px 2px 6px rgba(0, 0, 0, 0.6),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.05),
+        -1px -1px 2px rgba(255, 255, 255, 0.03);
+    transform: translateY(2px);
+}
+
+.task-button:hover:not(.pressed):not(.locked) {
+    box-shadow: 
+        -3px -3px 8px rgba(255, 255, 255, 0.08),
+        5px 5px 12px rgba(0, 0, 0, 0.6),
+        inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* Engraved Text (Letterpress Effect) */
+.task-text {
+    color: #ffffff !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: none;
+    opacity: 1;
+    filter: none;
+    -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.8);
+    font-family: 'Palanquin Dark', 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+}
+
+.task-button.pressed .task-text {
+    color: #22c55e !important;
+    -webkit-text-fill-color: #22c55e !important;
+    text-shadow: none;
+    opacity: 1;
+    filter: none;
+    -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.8);
+    font-family: 'Palanquin Dark', 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+}
+
+/* Lighter matte base for container */
+.task-container-base {
+    background-image: url('../assets/images/table.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px !important;
+}
+
+/* Shuriken Medal Styles */
+.shuriken {
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.shuriken.gold {
+    color: #FFD700;
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.4));
+}
+
+.shuriken.silver {
+    color: #C0C0C0;
+    filter: drop-shadow(0 2px 4px rgba(192, 192, 192, 0.4));
+}
+
+.shuriken.bronze {
+    color: #CD7F32;
+    filter: drop-shadow(0 2px 4px rgba(205, 127, 50, 0.4));
+}
+
+.shuriken-hole {
+    fill: #000000;
+}
+
+/* Heated Metal Progress Bar Animation */
+.heated-metal-bar {
+    background: linear-gradient(90deg, 
+        #2c3e50 0%,    /* Dark cold metal */
+        #34495e 20%,   /* Slightly warmer */
+        #e67e22 40%,   /* Orange glow */
+        #e74c3c 60%,   /* Red hot */
+        #f39c12 80%,   /* Bright orange */
+        #f1c40f 100%   /* White-hot yellow */
+    ) !important;
+    box-shadow: 
+        0 0 10px rgba(241, 196, 15, 0.6),
+        0 0 20px rgba(243, 156, 18, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+    animation: heat-pulse 2s ease-in-out infinite !important;
+}
+
+@keyframes heat-pulse {
+    0%, 100% {
+        filter: brightness(1) saturate(1);
+    }
+    50% {
+        filter: brightness(1.2) saturate(1.3);
+    }
+}
+
+/* History Section with Transparent Background */
+.history-section {
+    position: relative;
+}
+
+.history-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/images/history.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0.55;
+    z-index: -1;
+    pointer-events: none;
+}
+

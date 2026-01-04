@@ -35,218 +35,105 @@
     <link href="https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=Permanent+Marker&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* Slate 900 */
-            color: #e2e8f0;
-            min-height: 100vh;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.1) 0px, transparent 50%);
-        }
-
-        /* Glassmorphism */
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        #motivation-quote {
-            transition: opacity 0.2s ease-in-out;
-        }
-
-        .glass-card {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.2s ease, background 0.2s ease;
-        }
-
-        .glass-card:hover {
-            background: rgba(51, 65, 85, 0.7);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569; 
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-
-        .checkbox-wrapper input:checked + div {
-            background-color: #10b981;
-            border-color: #10b981;
-        }
-        
-        .checkbox-wrapper input:checked + div svg {
-            display: block;
-        }
-
-        /* 3D Tactile Button Styles */
-        .task-button {
-            background: linear-gradient(145deg, #95a0ab, #798590);
-            border: 1px solid rgba(239, 116, 130, 0.4);
-            box-shadow: 
-                -2px -2px 6px rgba(255, 255, 255, 0.1),
-                4px 4px 10px rgba(0, 0, 0, 0.5),
-                inset 0 0 0 rgba(0, 0, 0, 0);
-            transition: all 0.2s ease-in-out;
-            transform: translateY(0px);
-        }
-
-        .task-button.pressed {
-            background: linear-gradient(145deg, #5a6169, #474d54);
-            border: 1px solid rgba(34, 197, 94, 0.4);
-            box-shadow: 
-                inset 2px 2px 6px rgba(0, 0, 0, 0.6),
-                inset -2px -2px 4px rgba(255, 255, 255, 0.05),
-                -1px -1px 2px rgba(255, 255, 255, 0.03);
-            transform: translateY(2px);
-        }
-
-        .task-button:hover:not(.pressed):not(.locked) {
-            box-shadow: 
-                -3px -3px 8px rgba(255, 255, 255, 0.08),
-                5px 5px 12px rgba(0, 0, 0, 0.6),
-                inset 0 0 0 rgba(0, 0, 0, 0);
-        }
-
-        /* Engraved Text (Letterpress Effect) */
-        .task-text {
-            color: #373434 !important;
-            background: none !important;
-            -webkit-background-clip: unset !important;
-            -webkit-text-fill-color: #373434 !important;
-            text-shadow: none;
-            opacity: 1;
-            filter: none;
-            -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.8);
-            font-family: 'Palanquin Dark', 'Inter', sans-serif !important;
-            font-size: 0.95rem !important;
-            font-weight: 600 !important;
-        }
-
-        .task-button.pressed .task-text {
-            color: #22c55e !important;
-            -webkit-text-fill-color: #22c55e !important;
-            text-shadow: none;
-            opacity: 1;
-            filter: none;
-            -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.8);
-            font-family: 'Palanquin Dark', 'Inter', sans-serif !important;
-            font-size: 0.95rem !important;
-            font-weight: 600 !important;
-        }
-
-        /* Lighter matte base for container */
-        .task-container-base {
-            background: linear-gradient(145deg, #3d4451, #2f3542);
-        }
-
-        /* Shuriken Medal Styles */
-        .shuriken {
-            display: inline-block;
-            font-size: 1.5rem;
-        }
-        
-        .shuriken.gold {
-            color: #FFD700;
-            filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.4));
-        }
-        
-        .shuriken.silver {
-            color: #C0C0C0;
-            filter: drop-shadow(0 2px 4px rgba(192, 192, 192, 0.4));
-        }
-        
-        .shuriken.bronze {
-            color: #CD7F32;
-            filter: drop-shadow(0 2px 4px rgba(205, 127, 50, 0.4));
-        }
-        
-        .shuriken-hole {
-            fill: #000000;
-        }
-    </style>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="antialiased pb-12 relative overflow-x-hidden">
 
     <!-- Samurai Image - Right Side Decoration with Seamless Fade -->
-    <div class="fixed right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0 hidden lg:block" style="width: 400px; height: 700px; opacity: 0.2;">
-        <img src="./samurai.png" 
+    <div class="fixed right-0 pointer-events-none z-0 hidden lg:block" style="width: 400px; height: 700px; opacity: 0.3; bottom: -70px;">
+        <img src="assets/images/samurai1.jpg" 
              alt="Samurai" 
              class="w-full h-full object-contain object-right"
              style="
-                filter: brightness(0.6) contrast(1.2);
+                filter: brightness(0.35) contrast(1.2);
                 mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 20%, black 40%);
                 -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 20%, black 40%);
              ">
     </div>
 
     <!-- Registration Modal -->
-    <div id="registration-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center hidden">
-        <div class="bg-slate-800 rounded-2xl p-8 max-w-md w-full mx-4 border border-sky-500/30 shadow-2xl">
-            <h2 class="text-3xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400" style="font-family: 'Permanent Marker', cursive;">
-                Kaizen
-            </h2>
-            <p class="text-slate-300 text-center mb-6 text-lg">Please enter your name</p>
-            <input 
-                type="text" 
-                id="user-name-input" 
-                placeholder="Your name..." 
-                class="w-full bg-slate-700/50 border border-sky-500/30 rounded-lg px-4 py-3 text-white text-center text-xl focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 transition-colors mb-6"
-                maxlength="20"
-            >
+    <div id="registration-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" style="background-image: url('assets/images/metal.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0" style="background: rgba(0, 0, 0, 0.7);"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative z-10 flex flex-col items-center gap-6">
+            <!-- Kaizen Title -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 30px 40px; width: 400px; box-sizing: border-box;">
+                <h1 class="text-5xl md:text-6xl font-bold" style="font-family: 'Permanent Marker', cursive; letter-spacing: 0.05em; font-weight: 500; color: #a6a6a6; text-align: center;">
+                    Kaizen
+            </h1>
+                <p class="text-sm font-bold mt-2" style="color: #FFD700; text-align: center;">
+                    discipline through daily progress
+                </p>
+            </div>
+            
+            <!-- Please enter your name -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 20px 40px; width: 400px; box-sizing: border-box;">
+                <p class="text-lg font-medium" style="color: #ffffff; text-align: center;">
+                    Please enter your name
+                </p>
+            </div>
+            
+            <!-- Input Field -->
+            <div style="width: 400px;">
+                <input 
+                    type="text" 
+                    id="user-name-input" 
+                    placeholder="Your name..." 
+                    class="w-full border rounded-lg px-4 py-3 text-white text-center text-xl focus:outline-none transition-colors"
+                    style="background-color: rgba(30, 41, 59, 0.8); border-color: #475569; outline: none;"
+                    onfocus="this.style.borderColor='#FFD700'; this.style.boxShadow='0 0 0 2px #FFD700'" 
+                    onblur="this.style.borderColor='#475569'; this.style.boxShadow='none'"
+                    maxlength="20"
+                >
+            </div>
+            
+            <!-- Start Journey Button -->
             <button 
                 onclick="app.registerUser()" 
-                class="w-full bg-gradient-to-r from-sky-500 to-purple-500 hover:from-sky-600 hover:to-purple-600 text-white font-bold py-3 rounded-lg transition-all duration-200 hover:scale-105 shadow-lg text-lg">
+                class="font-bold py-3 px-8 rounded-xl transition-all duration-200 hover:scale-105 shadow-lg text-lg" 
+                style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; color: #FFD700; min-width: 200px;">
                 Start Journey
             </button>
         </div>
     </div>
 
     <!-- Welcome Message Modal -->
-    <div id="welcome-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center hidden">
-        <div class="bg-slate-800 rounded-2xl p-8 max-w-md w-full mx-4 border border-sky-500/30 shadow-2xl text-center">
-            <h2 class="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400" style="font-family: 'Permanent Marker', cursive;">
-                Welcome
-            </h2>
-            <p id="welcome-name" class="text-3xl font-bold text-white mb-8"></p>
+    <div id="welcome-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" style="background-image: url('assets/images/metal.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0" style="background: rgba(0, 0, 0, 0.7);"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative z-10 flex flex-col items-center gap-6">
+            <!-- Welcome Title -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 30px 40px; width: 400px; box-sizing: border-box;">
+                <h2 class="text-5xl md:text-6xl font-bold" style="font-family: 'Permanent Marker', cursive; letter-spacing: 0.05em; font-weight: 500; color: #a6a6a6; text-align: center;">
+                    Welcome
+                </h2>
+            </div>
+            
+            <!-- User Name Display -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 20px 40px; width: 400px; box-sizing: border-box;">
+                <p id="welcome-name" class="text-3xl font-bold" style="color: #FFD700; text-align: center;"></p>
+            </div>
+            
+            <!-- Begin Button -->
             <button 
                 onclick="app.closeWelcome()" 
-                class="bg-gradient-to-r from-sky-500 to-purple-500 hover:from-sky-600 hover:to-purple-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-200 hover:scale-105 shadow-lg text-lg">
+                class="font-bold py-3 px-8 rounded-xl transition-all duration-200 hover:scale-105 shadow-lg text-lg" 
+                style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; color: #FFD700; min-width: 200px;">
                 Begin
             </button>
-        </div>
-    </div>
+                     </div>
+                 </div>
 
     <!-- Victory Video Modal -->
     <div id="victory-modal" class="fixed inset-0 bg-black z-50 hidden items-center justify-center">
         <div class="relative w-full h-full">
             <video id="victory-video" class="w-full h-full object-contain">
-                <source src="./video.mp4" type="video/mp4">
+                <source src="assets/video/video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <!-- Congratulations Message -->
@@ -254,120 +141,123 @@
                 <h1 class="text-6xl md:text-8xl font-bold text-white animate-pulse">
                     Congratulations!
                 </h1>
-            </div>
-        </div>
+                     </div>
+                 </div>
     </div>
 
     <!-- Header -->
     <header class="pt-6 pb-4 px-4 max-w-3xl mx-auto">
         <div class="flex justify-between items-start">
-            <!-- Left: Kaizen - YELLOW BOX POSITION -->
-            <div style="position: absolute; left: 100px; top: 40px;">
-                <h1 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400" style="font-family: 'Permanent Marker', cursive; letter-spacing: 0.05em; font-weight: 500;">
+            <!-- Left: Kaizen - Top Left Corner -->
+            <div style="position: absolute; left: 20px; top: 20px; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 20px 25px; width: 280px; box-sizing: border-box;">
+                <h1 class="text-4xl md:text-5xl font-bold" style="font-family: 'Permanent Marker', cursive; letter-spacing: 0.05em; font-weight: 500; color: #a6a6a6; text-align: center;">
                     Kaizen
                 </h1>
-                <p class="text-xs font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400" style="display: inline-block;">
+                <p class="text-xs font-bold" style="color: #FFD700; text-align: center;">
                     discipline through daily progress
                 </p>
-            </div>
-            
-            <!-- Right: Streak and Success -->
-            <div style="margin-left: auto;">
-                <div class="text-right flex gap-3 justify-end">
-                     <div class="text-center">
-                         <div id="win-streak-badge" class="inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm bg-slate-800 border border-slate-700 text-orange-400">
-                            🔥 0
-                         </div>
-                         <div class="text-[10px] text-slate-500 uppercase tracking-wider mt-1">Streak</div>
-                     </div>
-                     <div class="text-center">
-                         <div id="total-success-badge" class="inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm bg-slate-800 border border-slate-700">
-                            0%
-                         </div>
-                         <div class="text-[10px] text-slate-500 uppercase tracking-wider mt-1">Success</div>
-                     </div>
-                </div>
-            </div>
+             </div>
         </div>
     </header>
-    
-    <!-- User Name and Rank - Bottom Left Corner -->
-    <div style="position: fixed; left: 100px; bottom: 40px; z-index: 20;">
-        <p style="font-family: 'Inter', sans-serif;">
-            <span id="user-name-display" class="text-xs md:text-sm font-medium bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400" style="display: inline-block;">Nikola</span>
-            <span class="text-xs md:text-sm font-medium" style="color: #94a3b8;"> - </span>
-            <span id="user-rank-display" class="text-xs md:text-sm font-bold" style="color: #ffffff;">Apprentice</span>
+
+    <!-- User Name and Rank - Below Kaizen -->
+    <div style="position: absolute; left: 20px; top: 131px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 12px 25px; width: 280px; box-sizing: border-box;">
+        <p style="font-family: 'Inter', sans-serif; text-align: center;">
+            <span id="user-name-display" class="text-lg md:text-xl font-medium" style="color: #CD7F32;">Nikola</span>
+            <span class="text-base md:text-lg font-medium" style="color: #94a3b8;"> - </span>
+            <span id="user-rank-display" class="text-base md:text-lg font-bold" style="color: #ffffff;">Apprentice</span>
         </p>
     </div>
 
-    <!-- Samurai Speech Bubble - Quote Card -->
-    <div id="quote-section" class="fixed right-[50px] top-[102px] pointer-events-none z-10 hidden lg:block animate-fade-in" style="animation-delay: 0.2s; max-width: 300px;">
-        <div class="relative">
-            <!-- Speech bubble - oval shape -->
-            <div class="bg-slate-800/90 backdrop-blur-sm border-2 border-slate-400/40 rounded-full px-6 py-4 shadow-2xl relative">
-                <p id="motivation-quote" class="text-base font-bold text-slate-400 leading-snug text-center" style="font-family: 'Georgia', 'Palatino', serif; font-style: italic; letter-spacing: 0.3px;">
-                    "Fokus na cilj!"
-                </p>
+    <!-- Date - Below Username Placeholder -->
+    <div style="position: absolute; left: 20px; top: 194px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 25px; width: 280px; box-sizing: border-box;">
+        <p class="text-slate-400 text-xs md:text-sm font-medium" id="current-date" style="text-align: center;">Fetching date...</p>
+    </div>
+
+    <!-- Medals Earned - Below Date Placeholder -->
+    <div style="position: absolute; left: 20px; top: 237px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 20px; width: 280px; box-sizing: border-box;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <p class="text-base md:text-lg font-medium text-slate-400" style="margin: 0;">Medals earned</p>
+            <div style="display: flex; gap: 6px; margin-left: 8px;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <span class="text-xl mb-0 leading-none">
+                        <svg class="shuriken gold" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
+                            <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
+                        </svg>
+                    </span>
+                    <span id="stat-gold" class="text-xs font-bold text-amber-400 leading-none mt-1">0</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <span class="text-xl mb-0 leading-none">
+                        <svg class="shuriken silver" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
+                            <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
+                        </svg>
+                    </span>
+                    <span id="stat-silver" class="text-xs font-bold text-slate-300 leading-none mt-1">0</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <span class="text-xl mb-0 leading-none">
+                        <svg class="shuriken bronze" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
+                            <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
+                        </svg>
+                    </span>
+                    <span id="stat-bronze" class="text-xs font-bold text-orange-400 leading-none mt-1">0</span>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Winning Streak - Below Medals Earned, Left Side -->
+    <div style="position: absolute; left: 20px; top: 302px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 12px; width: 135px; height: 48px; box-sizing: border-box;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 6px; height: 100%;">
+            <p class="text-slate-400 text-xs font-bold" style="margin: 0;">Winning streak</p>
+            <div id="win-streak-badge" class="inline-flex items-center justify-center rounded-lg font-bold text-xs border shadow-sm transition-colors duration-300 bg-slate-800 text-slate-300 border-slate-700" style="min-width: 45px; height: 24px; padding: 0 6px;">🔥 0</div>
+        </div>
+    </div>
+
+    <!-- Total Success - Below Medals Earned, Right Side -->
+    <div style="position: absolute; left: 165px; top: 302px; z-index: 20; background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 12px; width: 135px; height: 48px; box-sizing: border-box;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 6px; height: 100%;">
+            <p class="text-slate-400 text-xs font-bold" style="margin: 0;">Total success</p>
+            <div id="total-success-badge" class="inline-flex items-center justify-center rounded-lg font-bold text-xs border shadow-sm transition-colors duration-300 bg-slate-800 text-slate-300 border-slate-700" style="min-width: 45px; height: 24px; padding: 0 6px;">0%</div>
+        </div>
+    </div>
+
+
+    <!-- Samurai Speech Bubble - Quote Card -->
+    <div id="quote-section" class="pointer-events-none z-10 hidden lg:block animate-fade-in" style="animation-delay: 0.2s; position: absolute; right: 20px; top: 20px; background-image: url('assets/images/motivation.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 20px 25px; width: 280px; height: 225px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+        <div style="background-color: rgba(0, 0, 0, 0.15); padding: 10px 20px; border-radius: 8px; backdrop-filter: blur(4px);">
+            <p id="motivation-quote" class="text-2xl font-bold leading-snug text-center" style="font-family: 'Georgia', 'Palatino', serif; font-style: italic; letter-spacing: 0.3px; color: #ffffff;">
+                "Fokus na cilj!"
+            </p>
         </div>
     </div>
 
     <main class="max-w-3xl mx-auto px-4 space-y-4 relative z-10">
-        
-        <!-- Monthly Stats (Shurikens) -->
-        <section class="flex gap-2 justify-end animate-fade-in" style="animation-delay: 0.1s;">
-            <div class="glass-card rounded-lg p-1 w-[50px] flex flex-col items-center justify-center h-[50px] border border-sky-500/30 shadow-sm">
-                <span class="text-2xl mb-0 leading-none">
-                    <svg class="shuriken gold" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
-                        <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
-                    </svg>
-                </span>
-                <span id="stat-gold" class="text-xs font-bold text-amber-400 leading-none mt-1">0</span>
-            </div>
-            <div class="glass-card rounded-lg p-1 w-[50px] flex flex-col items-center justify-center h-[50px] border border-sky-500/30 shadow-sm">
-                <span class="text-2xl mb-0 leading-none">
-                    <svg class="shuriken silver" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
-                        <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
-                    </svg>
-                </span>
-                <span id="stat-silver" class="text-xs font-bold text-slate-300 leading-none mt-1">0</span>
-            </div>
-            <div class="glass-card rounded-lg p-1 w-[50px] flex flex-col items-center justify-center h-[50px] border border-sky-500/30 shadow-sm">
-                <span class="text-2xl mb-0 leading-none">
-                    <svg class="shuriken bronze" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
-                        <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
-                    </svg>
-                </span>
-                <span id="stat-bronze" class="text-xs font-bold text-orange-400 leading-none mt-1">0</span>
-            </div>
-        </section>
-        
-        <!-- Date - one row above table -->
-        <div class="flex justify-start">
-            <p class="text-slate-400 text-xs md:text-sm font-medium" id="current-date">Fetching date...</p>
-        </div>
 
         <!-- Today's Progress -->
-        <section class="glass-panel task-container-base rounded-xl p-4 border border-sky-500/30 shadow-md animate-fade-in" style="animation-delay: 0.3s;">
-            <div class="flex items-center gap-2 mb-3">
-                <h2 class="text-xs font-bold text-slate-100 flex items-center gap-1 border border-sky-500/30 rounded px-2 py-0.5 bg-slate-800">
+        <section class="glass-panel task-container-base rounded-xl p-4 border border-sky-500/30 shadow-md animate-fade-in" style="animation-delay: 0.3s; display: flex; flex-direction: column; max-height: 600px;">
+            <div class="flex items-center gap-2 mb-3" style="margin-top: 20px; position: relative;">
+                <h2 class="text-xs font-bold text-slate-100 flex items-center gap-1 rounded px-2 py-0.5" style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 2px 10px; padding-right: 10px;">
                     <span>📅</span> Daily Progress
+                    <div id="today-medal" class="text-xl opacity-50 grayscale transition-all duration-500 ml-3">🥇</div>
                 </h2>
-                <!-- DAILY SUCCESS Indicator -->
-                <span id="daily-success-indicator" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border-2 border-green-400/80 transition-colors duration-300">
+                <!-- DAILY SUCCESS Indicator - Top Right of Table -->
+                <span id="daily-success-indicator" class="text-xs font-mono font-bold rounded transition-colors duration-300" style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 2px 10px; display: inline-flex; align-items: center; height: 100%; position: absolute; right: 0; top: 0;">
                     0%
                 </span>
-                <div id="today-medal" class="text-xl opacity-50 grayscale transition-all duration-500 ml-auto">🥇</div>
             </div>
 
             <!-- Progress Bar -->
             <div class="w-full bg-slate-700/50 rounded-full h-2 mb-4 relative overflow-hidden">
-                <div id="progress-bar" class="bg-gradient-to-r from-sky-500 to-purple-500 h-2 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                <div id="progress-bar" class="h-2 rounded-full transition-all duration-500 ease-out heated-metal-bar" style="width: 0%"></div>
             </div>
 
+            <!-- Scrollable Content Area -->
+            <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
             <!-- Habit Grid -->
             <div id="habit-list" class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
                 <!-- Habits injected here -->
@@ -375,21 +265,22 @@
 
             <!-- Add Habit Input (Compact) -->
             <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
-                 <div class="col-span-2 flex gap-2 items-center">
+                     <div class="col-span-2 flex gap-2 items-center">
                     <input type="text" id="new-habit-input" placeholder="New habit..." 
-                        class="flex-1 bg-slate-800/50 border border-slate-600 rounded-lg px-2 py-1.5 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors text-xs">
+                            class="flex-1 bg-slate-800/50 border border-slate-600 rounded-lg px-2 py-1.5 focus:outline-none transition-colors text-xs" style="outline: none;" onfocus="this.style.borderColor='#FFD700'; this.style.boxShadow='0 0 0 1px #FFD700'" onblur="this.style.borderColor='#475569'; this.style.boxShadow='none'">
                     <button onclick="app.addHabit()" 
-                        class="bg-sky-600 hover:bg-sky-500 text-white w-5 h-5 rounded-lg font-bold transition-colors text-xs flex items-center justify-center flex-shrink-0">
+                            class="text-white w-5 h-5 rounded-lg font-bold transition-colors text-xs flex items-center justify-center flex-shrink-0" style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                         +
                     </button>
+                     </div>
                  </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="pt-3 border-t border-slate-700/30 flex justify-end">
+            <!-- Action Buttons - Fixed at bottom -->
+            <div class="pt-3 border-t border-slate-700/30 flex justify-end" style="flex-shrink: 0;">
                 <button id="finish-day-btn" onclick="app.archiveDay()" 
-                    class="group relative inline-flex items-center justify-center px-3 py-1.5 text-xs font-bold transition-all duration-200 bg-slate-800/50 border border-sky-500/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-600 hover:scale-105 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
-                    <span class="relative flex items-center gap-2 bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400">
+                    class="group relative inline-flex items-center justify-center px-3 py-1.5 text-xs font-bold transition-all duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-600 hover:scale-105 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100" style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                    <span class="relative flex items-center gap-2" style="color: #FFD700;">
                         Finish & Start New Day ➡️
                     </span>
                 </button>
@@ -397,636 +288,113 @@
         </section>
 
         <!-- History Grid -->
-        <section class="animate-fade-in" style="animation-delay: 0.4s;">
-            <h2 class="text-base font-bold text-slate-300 mb-3 px-1">History</h2>
+        <section class="animate-fade-in history-section" style="animation-delay: 0.4s; padding: 20px 30px; position: relative;">
+            <h2 class="text-base font-bold mb-3" style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 8px 20px; color: #ffffff; display: inline-block;">History</h2>
             <div id="history-grid" class="flex flex-wrap gap-2">
                 <!-- History squares injected here -->
                 <div class="text-center text-slate-500 py-4 italic text-xs w-full">No history yet.</div>
             </div>
         </section>
-        
-        <!-- Reset Section -->
-        <div class="text-center mt-8 pb-8">
-             <button onclick="app.resetApp()" class="text-xs text-slate-600 hover:text-red-500 transition-colors underline">
-                Start Again (Reset All Data)
-             </button>
-        </div>
 
     </main>
 
-    <!-- Application Logic -->
-    <script>
-        const STORAGE_KEY = 'daily_discipline_app_v2';
-        
-        // --- Confetti Effect ---
-        function runCelebration() {
-            const duration = 2000;
-            const animationEnd = Date.now() + duration;
-            const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 0 };
-
-            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
-
-            const interval = setInterval(function() {
-                const timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) { return clearInterval(interval); }
-                const particleCount = 40 * (timeLeft / duration);
-                
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
-        }
-
-        // --- Quotes ---
-        const MOTIVATION_QUOTES = [
-            'Win the day.', 'Action over excuses.', 'Keep showing up.', 'Discipline is freedom.', 'No shortcuts.', 
-            'Focus on the work.', 'Silence the noise.', 'Stay in the fight.', 'Don\'t break the chain.', 'Build the beast.', 
-            'Average is the enemy.', 'Master your mind.', 'Pain is temporary.', 'One more rep.', 'Eyes on the prize.', 
-            'Execution is everything.', 'Standard of excellence.', 'Commitment, not mood.', 'Grind now, glory later.', 'Finish what you start!'
-        ];
-        
-        // Global shuffle logic
-        let shuffledQuotes = [];
-        let currentIndex = 0;
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-        
-        function initQuotes() {
-            shuffledQuotes = [...MOTIVATION_QUOTES];
-            shuffleArray(shuffledQuotes);
-            currentIndex = 0;
-        }
-
-        // --- App Class ---
-        class DisciplineApp {
-            constructor() {
-                this.state = {
-                    userName: null, // User's name
-                    habits: ['Reading (20m)', 'Workout', 'Deep Work (2h)'],
-                    currentDay: {}, // Map habitIndex -> boolean
-                    history: [], 
-                    winStreak: 0, // New streak counter
-                    targetDate: null // Target date for tasks
-                };
-                
-                this.init();
-            }
-
-            init() {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    try {
-                        const parsed = JSON.parse(saved);
-                        this.state = { ...this.state, ...parsed };
-                        // Ensure winStreak exists for legacy data
-                        if (typeof this.state.winStreak === 'undefined') {
-                            this.state.winStreak = this.calculateStreakFromHistory();
-                        }
-                        // Initialize targetDate if not present
-                        if (!this.state.targetDate) {
-                            this.state.targetDate = this.getTodayDateString();
-                        }
-                    } catch(e) {
-                        console.error("Data corruption reset");
-                        this.state.targetDate = this.getTodayDateString();
-                    }
-                } else {
-                    // First time - set target date to today
-                    this.state.targetDate = this.getTodayDateString();
-                }
-                
-                // Check if user is registered
-                if (!this.state.userName) {
-                    this.showRegistration();
-                } else {
-                    initQuotes(); // Initialize shuffled quotes
-                    this.render();
-                    this.setupEnterKey();
-                    this.updateMotivation();
-                }
-            }
+    <!-- Custom Confirmation Modal -->
+    <div id="custom-confirm-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" style="background: rgba(0, 0, 0, 0.9);">
+        <div class="relative z-10 flex flex-col items-center gap-6">
+            <!-- Message -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 30px 40px; width: 450px; box-sizing: border-box;">
+                <p id="custom-confirm-message" class="text-lg font-medium" style="color: #ffffff; text-align: center; line-height: 1.5;"></p>
+            </div>
             
-            showRegistration() {
-                const modal = document.getElementById('registration-modal');
-                modal.classList.remove('hidden');
-                
-                const input = document.getElementById('user-name-input');
-                input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.registerUser();
-                });
-                input.focus();
-            }
+            <!-- Buttons -->
+            <div class="flex gap-4">
+                <button 
+                    onclick="app.closeCustomConfirm(false)" 
+                    class="font-bold py-2 px-6 rounded-xl transition-all duration-200 hover:scale-105 shadow-lg text-base" 
+                    style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; color: #94a3b8; min-width: 120px;">
+                    Cancel
+                </button>
+                <button 
+                    onclick="app.closeCustomConfirm(true)" 
+                    class="font-bold py-2 px-6 rounded-xl transition-all duration-200 hover:scale-105 shadow-lg text-base" 
+                    style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; color: #FFD700; min-width: 120px;">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Alert Modal -->
+    <div id="custom-alert-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" style="background: rgba(0, 0, 0, 0.9);">
+        <div class="relative z-10 flex flex-col items-center gap-6">
+            <!-- Message -->
+            <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 30px 40px; width: 450px; box-sizing: border-box;">
+                <p id="custom-alert-message" class="text-lg font-medium" style="color: #ffffff; text-align: center; line-height: 1.5;"></p>
+            </div>
             
-            registerUser() {
-                const input = document.getElementById('user-name-input');
-                const name = input.value.trim();
-                
-                if (!name) {
-                    alert('Please enter your name');
-                    return;
-                }
-                
-                this.state.userName = name;
-                this.save();
-                
-                // Hide registration modal
-                const regModal = document.getElementById('registration-modal');
-                regModal.classList.add('hidden');
-                
-                // Show welcome modal
-                const welcomeModal = document.getElementById('welcome-modal');
-                const welcomeName = document.getElementById('welcome-name');
-                welcomeName.textContent = name;
-                welcomeModal.classList.remove('hidden');
-            }
+            <!-- Button -->
+            <button 
+                onclick="app.closeCustomAlert()" 
+                class="font-bold py-2 px-6 rounded-xl transition-all duration-200 hover:scale-105 shadow-lg text-base" 
+                style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; color: #FFD700; min-width: 120px;">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- Start Again Button - Bottom Left Corner -->
+    <div style="position: fixed; left: 20px; bottom: 20px; z-index: 30;">
+        <button onclick="app.openResetModal()" 
+            class="group relative inline-flex items-center justify-center px-3 py-1.5 text-xs font-bold transition-all duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-600 hover:scale-105 shadow-md" 
+            style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+            <span class="relative flex items-center gap-2" style="color: #FFD700;">
+                ⚙️ Start Again
+            </span>
+        </button>
+    </div>
+
+    <!-- Reset Modal -->
+    <div id="reset-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center hidden">
+        <div style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; padding: 30px 40px; width: 400px; box-sizing: border-box;">
+            <h2 class="text-2xl font-bold text-center mb-6" style="color: #FFD700; font-family: 'Permanent Marker', cursive;">
+                Reset Options
+            </h2>
             
-            closeWelcome() {
-                const welcomeModal = document.getElementById('welcome-modal');
-                welcomeModal.classList.add('hidden');
+            <div class="space-y-4 mb-6">
+                <!-- Reset & Start Again -->
+                <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-700/30 transition-colors cursor-pointer" onclick="app.selectResetOption('soft')">
+                    <input type="radio" name="reset-option" id="reset-soft" value="soft" class="mt-1">
+                    <label for="reset-soft" class="cursor-pointer flex-1">
+                        <div class="text-base font-bold text-slate-200">Reset & Start Again</div>
+                        <div class="text-xs text-slate-400 mt-1">Reset history and statistics, keep your name and task cards</div>
+                    </label>
+                </div>
                 
-                // Initialize app
-                initQuotes();
-                this.render();
-                this.setupEnterKey();
-                this.updateMotivation();
-            }
+                <!-- Clear All Data -->
+                <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-700/30 transition-colors cursor-pointer" onclick="app.selectResetOption('hard')">
+                    <input type="radio" name="reset-option" id="reset-hard" value="hard" class="mt-1">
+                    <label for="reset-hard" class="cursor-pointer flex-1">
+                        <div class="text-base font-bold text-red-400">Clear All Data</div>
+                        <div class="text-xs text-slate-400 mt-1">Delete everything and start from scratch</div>
+                    </label>
+                </div>
+            </div>
             
-            getRankInfo() {
-                // Count total gold medals
-                let goldCount = 0;
-                this.state.history.forEach(day => {
-                    if (day.medal === '🥇') goldCount++;
-                });
-                
-                // Determine rank and color based on gold medals
-                let rank = 'Apprentice';
-                let color = '#ffffff'; // white
-                
-                if (goldCount >= 90) {
-                    rank = 'Master';
-                    color = '#FFD700'; // gold
-                } else if (goldCount >= 30) {
-                    rank = 'Samurai';
-                    color = '#C0C0C0'; // silver
-                } else if (goldCount >= 10) {
-                    rank = 'Warrior';
-                    color = '#CD7F32'; // bronze
-                }
-                
-                return { rank, color, goldCount };
-            }
-            
-            updateUserDisplay() {
-                const nameEl = document.getElementById('user-name-display');
-                const rankEl = document.getElementById('user-rank-display');
-                
-                if (nameEl && rankEl && this.state.userName) {
-                    nameEl.textContent = this.state.userName;
-                    
-                    const rankInfo = this.getRankInfo();
-                    rankEl.textContent = rankInfo.rank;
-                    rankEl.style.color = rankInfo.color;
-                }
-            }
-            
-            getTodayDateString() {
-                const today = new Date();
-                return today.toISOString().split('T')[0]; // YYYY-MM-DD format
-            }
-            
-            isTasksLocked() {
-                const today = this.getTodayDateString();
-                const target = this.state.targetDate;
-                return target > today; // Locked if target date is in the future
-            }
-            
-            formatDate(dateString) {
-                const date = new Date(dateString + 'T00:00:00');
-                return date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            }
-
-            calculateStreakFromHistory() {
-                let streak = 0;
-                for (const day of this.state.history) {
-                    if (day.medal === '🥇') {
-                        streak++;
-                    } else {
-                        break;
-                    }
-                }
-                return streak;
-            }
-
-            save() {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state));
-            }
-            
-            setupEnterKey() {
-                const input = document.getElementById('new-habit-input');
-                if(input) {
-                    input.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') this.addHabit();
-                    });
-                }
-            }
-
-            updateMotivation() {
-                const quoteEl = document.getElementById('motivation-quote');
-                
-                // Get next quote
-                if (currentIndex >= shuffledQuotes.length) {
-                    shuffleArray(shuffledQuotes);
-                    currentIndex = 0;
-                }
-                
-                const nextQuote = shuffledQuotes[currentIndex];
-                currentIndex++;
-                
-                // Simple fade effect
-                quoteEl.style.opacity = '0';
-                setTimeout(() => {
-                    quoteEl.textContent = `"${nextQuote}"`;
-                    quoteEl.style.opacity = '1';
-                }, 200);
-            }
-
-            // --- Core Logic ---
-
-            addHabit() {
-                const input = document.getElementById('new-habit-input');
-                const name = input.value.trim();
-                if (!name) return;
-
-                this.state.habits.push(name);
-                input.value = '';
-                this.save();
-                this.render();
-            }
-
-            deleteHabit(index) {
-                if(confirm("Remove this habit?")) {
-                    this.state.habits.splice(index, 1);
-                    this.state.currentDay = {}; 
-                    this.save();
-                    this.render();
-                }
-            }
-
-            toggleHabit(index) {
-                // Don't allow toggling if tasks are locked
-                if (this.isTasksLocked()) {
-                    alert('Tasks are locked! Wait until ' + this.formatDate(this.state.targetDate) + ' to continue.');
-                    return;
-                }
-                
-                const key = index.toString();
-                const wasChecked = this.state.currentDay[key];
-                this.state.currentDay[key] = !this.state.currentDay[key];
-                
-                const stats = this.calculateStats();
-                const medal = this.getMedal(stats.count, stats.total);
-
-                // Show victory video when completing all tasks (reaching 100%)
-                if (!wasChecked && this.state.currentDay[key] && medal === '🥇') {
-                    runCelebration();
-                    setTimeout(() => {
-                        this.showVictoryVideo();
-                    }, 500);
-                }
-
-                this.updateMotivation();
-                this.save();
-                this.render();
-            }
-
-            showVictoryVideo() {
-                const modal = document.getElementById('victory-modal');
-                const video = document.getElementById('victory-video');
-                const congratsMsg = document.getElementById('congrats-message');
-                
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                
-                video.currentTime = 0;
-                video.play();
-                
-                // Hide congrats message initially
-                congratsMsg.classList.add('hidden');
-                congratsMsg.classList.remove('flex');
-                
-                // When video ends, show congratulations and auto-close
-                video.onended = () => {
-                    congratsMsg.classList.remove('hidden');
-                    congratsMsg.classList.add('flex');
-                    
-                    // Auto-close after 3 seconds
-                    setTimeout(() => {
-                        this.closeVictoryVideo();
-                    }, 3000);
-                };
-            }
-
-            closeVictoryVideo() {
-                const modal = document.getElementById('victory-modal');
-                const video = document.getElementById('victory-video');
-                const congratsMsg = document.getElementById('congrats-message');
-                
-                video.pause();
-                video.currentTime = 0;
-                video.onended = null;
-                
-                congratsMsg.classList.add('hidden');
-                congratsMsg.classList.remove('flex');
-                
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }
-
-            calculateStats() {
-                const total = this.state.habits.length;
-                if (total === 0) return { count: 0, percentage: 0, total: 0 };
-                
-                let completed = 0;
-                this.state.habits.forEach((_, idx) => {
-                    if (this.state.currentDay[idx]) completed++;
-                });
-
-                return {
-                    count: completed,
-                    total: total,
-                    percentage: Math.round((completed / total) * 100)
-                };
-            }
-
-            getMedal(completed, total) {
-                if (total === 0) return null;
-                const missed = total - completed;
-                
-                if (missed === 0) return '🥇'; // Gold (0 missed)
-                if (missed === 1) return '🥈'; // Silver (1 missed)
-                if (missed === 2) return '🥉'; // Bronze (2 missed)
-                return null; // 3+ missed
-            }
-
-            archiveDay() {
-                // Prevent archiving if locked (future date)
-                if (this.isTasksLocked()) {
-                    alert('Cannot finish day yet! Wait until ' + this.formatDate(this.state.targetDate));
-                    return;
-                }
-                
-                const stats = this.calculateStats();
-                const medal = this.getMedal(stats.count, stats.total);
-                // Short date for grid: e.g. "Jan 1"
-                const dateShort = new Date(this.state.targetDate + 'T00:00:00').toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-                
-                const entry = {
-                    id: Date.now(),
-                    date: dateShort,
-                    percentage: stats.percentage,
-                    medal: medal
-                };
-
-                this.state.history.unshift(entry);
-                
-                // Update Streak Logic
-                if (medal === '🥇') {
-                    this.state.winStreak++;
-                } else {
-                    this.state.winStreak = 0;
-                }
-
-                this.state.currentDay = {};
-                
-                // Move target date to next day
-                const currentDate = new Date(this.state.targetDate);
-                currentDate.setDate(currentDate.getDate() + 1);
-                this.state.targetDate = currentDate.toISOString().split('T')[0];
-                
-                this.save();
-                this.render();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            resetApp() {
-                if(confirm("Are you sure? This will delete ALL history and habits.")) {
-                    localStorage.removeItem(STORAGE_KEY);
-                    location.reload();
-                }
-            }
-
-            calculateTotalSuccessRate() {
-                // Calculate average percentage of all history + today's snapshot isn't included in total usually, just history.
-                // The user asked "average of all completed days correctly" -> implies history.
-                if (this.state.history.length === 0) {
-                     return 0; // Default if no history
-                }
-                
-                const totalPct = this.state.history.reduce((acc, curr) => acc + curr.percentage, 0);
-                const avg = Math.round(totalPct / this.state.history.length);
-                return avg;
-            }
-
-            // --- Rendering ---
-
-            render() {
-                const isLocked = this.isTasksLocked();
-                
-                // Update user name and rank display
-                this.updateUserDisplay();
-                
-                // 1. Date - show target date with lock indicator if locked
-                const dateEl = document.getElementById('current-date');
-                const formattedDate = this.formatDate(this.state.targetDate);
-                dateEl.textContent = formattedDate + (isLocked ? ' 🔒 (Locked until this date)' : '');
-
-                // 2. Habits Grid
-                const list = document.getElementById('habit-list');
-                list.innerHTML = '';
-                
-                this.state.habits.forEach((habit, index) => {
-                    const isChecked = !!this.state.currentDay[index];
-                    
-                    const div = document.createElement('div');
-                    
-                    // Apply 3D tactile button classes
-                    const buttonClass = isChecked ? 'task-button pressed' : 'task-button';
-                    const lockedClass = isLocked ? 'locked opacity-50 cursor-not-allowed' : '';
-                    
-                    div.className = `${buttonClass} ${lockedClass} rounded-lg px-3 py-2 flex items-center justify-between group h-10 overflow-hidden`;
-                    
-                    const clickHandler = isLocked ? '' : `onclick="app.toggleHabit(${index})"`;
-                    const cursorClass = isLocked ? '' : 'cursor-pointer';
-                    
-                    div.innerHTML = `
-                        <div class="flex items-center gap-2 overflow-hidden w-full ${cursorClass}" ${clickHandler}>
-                             <div class="checkbox-wrapper relative w-3.5 h-3.5 flex-shrink-0 ${cursorClass}">
-                                <input type="checkbox" ${isChecked ? 'checked' : ''} ${isLocked ? 'disabled' : ''} class="peer appearance-none w-3.5 h-3.5 border border-slate-500 rounded checked:bg-green-500 checked:border-green-500 transition-colors ${cursorClass} absolute inset-0 opacity-0 z-10">
-                                <div class="w-3.5 h-3.5 border border-slate-500 rounded peer-checked:bg-green-500 peer-checked:border-green-500 transition-colors flex items-center justify-center">
-                                    <svg class="w-2.5 h-2.5 text-white hidden pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            <div class="flex gap-3 justify-center">
+                <button onclick="app.closeResetModal()" 
+                    class="px-4 py-2 text-sm font-bold text-slate-400 hover:text-slate-200 transition-colors">
+                    Cancel
+                </button>
+                <button onclick="app.confirmReset()" 
+                    class="px-6 py-2 text-sm font-bold rounded-lg transition-all duration-200 hover:scale-105" 
+                    style="background-image: url('assets/images/placeholder.png'); background-size: 100% 100%; background-repeat: no-repeat; color: #FFD700;">
+                    Confirm
+                </button>
                                 </div>
                             </div>
-                            <span class="task-text text-sm font-bold uppercase bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-400 truncate select-none">${habit}</span>
                         </div>
-                        <button onclick="event.stopPropagation(); app.deleteHabit(${index})" class="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity ml-1 flex-shrink-0">
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
-                    `;
-                    list.appendChild(div);
-                });
 
-                // 3. Stats & Progress
-                const stats = this.calculateStats();
-                const progressBar = document.getElementById('progress-bar');
-                progressBar.style.width = `${stats.percentage}%`;
-                
-                // Color change based on progress
-                if (stats.percentage === 100) {
-                    progressBar.className = 'bg-gradient-to-r from-amber-400 to-yellow-600 h-2 rounded-full transition-all duration-500';
-                } else if (stats.percentage >= 80) {
-                     progressBar.className = 'bg-gradient-to-r from-sky-400 to-blue-600 h-2 rounded-full transition-all duration-500';
-                } else {
-                     progressBar.className = 'bg-gradient-to-r from-slate-500 to-slate-400 h-2 rounded-full transition-all duration-500';
-                }
-
-                // Medal Logic (Strict: 0 missed = Gold, 1 missed = Silver, 2 missed = Bronze)
-                const todayMedalEl = document.getElementById('today-medal');
-                const earnedMedal = this.getMedal(stats.count, stats.total);
-                
-                const shurikenSVG = (colorClass) => `
-                    <svg class="shuriken ${colorClass}" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block;">
-                        <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
-                        <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
-                    </svg>
-                `;
-                
-                if (earnedMedal) {
-                    let colorClass = 'gold';
-                    if (earnedMedal === '🥈') colorClass = 'silver';
-                    if (earnedMedal === '🥉') colorClass = 'bronze';
-                    
-                    todayMedalEl.innerHTML = shurikenSVG(colorClass);
-                    todayMedalEl.classList.remove('opacity-50', 'grayscale');
-                    todayMedalEl.classList.add('scale-110');
-                } else {
-                    todayMedalEl.innerHTML = shurikenSVG('gold');
-                    todayMedalEl.classList.add('opacity-50', 'grayscale');
-                    todayMedalEl.classList.remove('scale-110');
-                }
-
-                // DAILY SUCCESS Indicator Update
-                const dailyInd = document.getElementById('daily-success-indicator');
-                dailyInd.textContent = `${stats.percentage}%`;
-                // Color logic for indicator
-                dailyInd.className = 'text-xs font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ml-2 ';
-                if (stats.percentage === 100) {
-                    dailyInd.className += 'bg-green-500/20 text-green-400 border-green-500/50';
-                } else if (stats.percentage >= 80) {
-                    dailyInd.className += 'bg-amber-500/20 text-amber-400 border-amber-500/50';
-                } else if (stats.percentage >= 50) {
-                    dailyInd.className += 'bg-blue-500/20 text-blue-400 border-blue-500/50';
-                } else {
-                    dailyInd.className += 'bg-slate-800 text-slate-400 border-slate-700';
-                }
-
-                // 4. Monthly Stats Count
-                let golds = 0, silvers = 0, bronzes = 0;
-                this.state.history.forEach(day => {
-                    if (day.medal === '🥇') golds++;
-                    if (day.medal === '🥈') silvers++;
-                    if (day.medal === '🥉') bronzes++;
-                });
-                document.getElementById('stat-gold').textContent = golds;
-                document.getElementById('stat-silver').textContent = silvers;
-                document.getElementById('stat-bronze').textContent = bronzes;
-
-                // 5. Total Success Rate
-                const totalRate = this.calculateTotalSuccessRate();
-                const rateBadge = document.getElementById('total-success-badge');
-                rateBadge.textContent = `${totalRate}%`;
-                
-                // Win Streak Update
-                const streakBadge = document.getElementById('win-streak-badge');
-                streakBadge.textContent = `🔥 ${this.state.winStreak}`;
-                if (this.state.winStreak > 0) {
-                    streakBadge.className = 'inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm bg-orange-500/10 text-orange-400 border border-orange-500/50';
-                } else {
-                    streakBadge.className = 'inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm bg-slate-800 text-slate-500 border border-slate-700';
-                }
-                
-                // Color Code
-                rateBadge.className = 'inline-flex items-center justify-center px-3 py-1 rounded-lg font-bold text-sm border shadow-sm transition-colors duration-300';
-                if (totalRate === 100) {
-                    rateBadge.classList.add('bg-lime-500/10', 'text-lime-400', 'border-lime-500/50');
-                } else if (totalRate >= 90) {
-                    rateBadge.classList.add('bg-cyan-500/10', 'text-cyan-400', 'border-cyan-500/50');
-                } else if (totalRate >= 80) {
-                    rateBadge.classList.add('bg-orange-500/10', 'text-orange-400', 'border-orange-500/50');
-                } else if (totalRate < 70 && this.state.history.length > 0) {
-                     rateBadge.classList.add('bg-red-500/10', 'text-red-400', 'border-red-500/50');
-                } else {
-                    // Default / New
-                    rateBadge.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
-                }
-
-                // Disable/Enable Finish Day Button based on lock status
-                const finishBtn = document.getElementById('finish-day-btn');
-                if (finishBtn) {
-                    finishBtn.disabled = isLocked;
-                }
-
-                // 6. History Grid
-                const historyEl = document.getElementById('history-grid');
-                historyEl.innerHTML = '';
-                
-                if (this.state.history.length === 0) {
-                    historyEl.innerHTML = '<div class="text-center text-slate-500 py-4 italic text-xs w-full">No history yet.</div>';
-                } else {
-                    this.state.history.forEach(day => {
-                        const cell = document.createElement('div');
-                        
-                        // Determine Color
-                        let bgClass = 'bg-slate-800 border-slate-700 text-slate-400';
-                        let shurikenColor = 'gold';
-                        
-                        if (day.medal === '🥇') {
-                            bgClass = 'bg-amber-500/20 border-amber-500/50 text-amber-300';
-                            shurikenColor = 'gold';
-                        } else if (day.medal === '🥈') {
-                            bgClass = 'bg-slate-400/20 border-slate-400/50 text-slate-300';
-                            shurikenColor = 'silver';
-                        } else if (day.medal === '🥉') {
-                            bgClass = 'bg-orange-500/20 border-orange-500/50 text-orange-300';
-                            shurikenColor = 'bronze';
-                        }
-                        
-                        cell.className = `w-9 h-9 rounded-md border ${bgClass} flex flex-col items-center justify-center cursor-help transition-transform hover:scale-105 relative group shadow-sm`;
-                        cell.title = `${day.date}: ${day.percentage}%`;
-
-                        const shurikenHTML = day.medal ? `
-                            <svg class="shuriken ${shurikenColor}" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2L13.5 8.5L20 7L15 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9 12L4 7L10.5 8.5Z"/>
-                                <circle class="shuriken-hole" cx="12" cy="12" r="2"/>
-                            </svg>
-                        ` : '<span class="text-sm leading-none">-</span>';
-
-                        cell.innerHTML = `
-                            <span class="text-[10px] absolute -top-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-black text-white px-1 rounded z-10">${day.date}</span>
-                            <span class="text-sm leading-none flex items-center justify-center">${shurikenHTML}</span>
-                            <span class="text-[8px] font-mono leading-none mt-0.5">${day.percentage}%</span>
-                        `;
-                        historyEl.appendChild(cell);
-                    });
-                }
-            }
-        }
-
-        // Initialize App
-        const app = new DisciplineApp();
-    </script>
+    <!-- Application Logic -->
+    <script src="js/app.js"></script>
 </body>
 </html>
